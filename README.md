@@ -15,6 +15,12 @@ Planned for Development:
   - At least 2 kinds of collectables
   - At least 2 mobility upgrades
 
+Design Goals:
+  - Comfotable, fun mobility
+  - Satisfying collectables
+  - Fun mobility upgrades
+  - Exciting, and delightful visuals (but let's be realistic)
+
 Delagation of Labor:
-  - Weston is pretty much doing everything and it's getting paid. :S
+  - Weston is pretty much doing everything and not getting paid. :S
 
