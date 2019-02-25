@@ -3,6 +3,8 @@ A 3D Platformer, Adventure game about anime girls running around collecting pand
 
 Built during Steve Hodge's CIS-35 - Game Development for Mobile Devices course of Spring 2019
 
+Unity Version: 2018.X
+
 Team Members:
 Weston Campbell - weston.campbell1@gmail.com
 
@@ -24,3 +26,17 @@ Design Goals:
 Delagation of Labor:
   - Weston is pretty much doing everything and not getting paid. :S
 
+Resources:
+  - "Unity-Chan!" Model : https://assetstore.unity.com/packages/3d/characters/unity-chan-model-18705
+  - Acquire-Chan 3D Model : https://assetstore.unity.com/packages/3d/characters/acquire-chan-3d-model-110031
+  - Lowpoly Toon Red Panda : https://assetstore.unity.com/packages/3d/characters/animals/lowpoly-toon-red-panda-62455
+  - Huge FBX Mocap Library part 1 : https://assetstore.unity.com/packages/3d/animations/huge-fbx-mocap-library-part-1-19991
+  - Huge FBX Mocap Library part 2 : https://assetstore.unity.com/packages/3d/animations/huge-fbx-mocap-library-part-2-20282
+  - Huge FBX Mocap Library part 3 : https://assetstore.unity.com/packages/3d/animations/huge-fbx-mocap-library-part-3-20285
+  - Fantasy Lands - Free Mini Pack : https://assetstore.unity.com/packages/3d/environments/fantasy-lands-free-mini-pack-112185
+  - Third Person Controller - Basic Locomotion FREE : https://assetstore.unity.com/packages/templates/systems/third-person-controller-basic-locomotion-free-82048
+  - UI - Builder : https://assetstore.unity.com/packages/tools/gui/ui-builder-29757
+  - Text Mesh Pro : Through Package Manager
+  - Dialogue System for Unity : https://assetstore.unity.com/packages/tools/ai/dialogue-system-for-unity-11672
+  
+  
