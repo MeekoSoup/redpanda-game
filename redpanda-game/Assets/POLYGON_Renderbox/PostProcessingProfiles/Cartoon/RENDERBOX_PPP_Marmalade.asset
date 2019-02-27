@@ -3,14 +3,13 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: MainMenuPP
+  m_Name: RENDERBOX_PPP_Marmalade
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -30,7 +29,7 @@ MonoBehaviour:
     m_Settings:
       excludeSkybox: 1
   antialiasing:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       method: 0
       fxaaSettings:
@@ -41,7 +40,7 @@ MonoBehaviour:
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       intensity: 1
       radius: 0.3
@@ -98,7 +97,7 @@ MonoBehaviour:
       logMin: -8
       logMax: 4
   bloom:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       bloom:
         intensity: 0.5
@@ -113,30 +112,30 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 0
+        tonemapper: 2
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
-        neutralBlackOut: 0
+        neutralBlackOut: -0.09
         neutralWhiteOut: 10
-        neutralWhiteLevel: 5.3
+        neutralWhiteLevel: 2.14
         neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 0
+        temperature: 100
         tint: 0
         hueShift: 0
-        saturation: 1
-        contrast: 1
+        saturation: 2
+        contrast: 0.7
       channelMixer:
-        red: {x: 1, y: 0, z: 0}
-        green: {x: 0, y: 1, z: 0}
-        blue: {x: 0, y: 0, z: 1}
+        red: {x: 2, y: 1, z: 2}
+        green: {x: 1, y: 1, z: 2}
+        blue: {x: 1, y: 0, z: 2}
         currentEditingChannel: 0
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.972947, g: 1, b: 0.6053445, a: 0}
+          power: {r: 1, g: 0.9895792, b: 0.83056587, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
@@ -147,27 +146,27 @@ MonoBehaviour:
           curve:
             serializedVersion: 2
             m_Curve:
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 0
               value: 0
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
+            - serializedVersion: 2
+              time: 0.4090909
+              value: 0.2962963
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
-            m_RotationOrder: 4
+            m_RotationOrder: 0
           m_Loop: 0
           m_ZeroValue: 0
           m_Range: 1
@@ -175,24 +174,18 @@ MonoBehaviour:
           curve:
             serializedVersion: 2
             m_Curve:
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 0
               value: 0
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
@@ -203,24 +196,18 @@ MonoBehaviour:
           curve:
             serializedVersion: 2
             m_Curve:
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 0
               value: 0
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
@@ -231,24 +218,18 @@ MonoBehaviour:
           curve:
             serializedVersion: 2
             m_Curve:
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 0
               value: 0
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
+            - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
               outSlope: 1
               tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
@@ -306,7 +287,7 @@ MonoBehaviour:
       lut: {fileID: 0}
       contribution: 1
   chromaticAberration:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
       intensity: 0.1
@@ -318,13 +299,13 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.45
-      smoothness: 0.2
+      smoothness: 0.33
       roundness: 1
       mask: {fileID: 0}
       opacity: 1
