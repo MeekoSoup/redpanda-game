@@ -38,5 +38,6 @@ Resources:
   - UI - Builder : https://assetstore.unity.com/packages/tools/gui/ui-builder-29757
   - Text Mesh Pro : Through Package Manager
   - Dialogue System for Unity : https://assetstore.unity.com/packages/tools/ai/dialogue-system-for-unity-11672
+  - RENDERBOX - Post Processing : https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/renderbox-post-processing-102004
   
   
