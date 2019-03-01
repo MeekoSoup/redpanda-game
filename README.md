@@ -21,7 +21,7 @@ Design Goals:
   - Comfotable, fun mobility
   - Satisfying collectables
   - Fun mobility upgrades
-  - Exciting, and delightful visuals (but let's be realistic)
+  - Exciting and delightful visuals (but let's be realistic)
 
 Delagation of Labor:
   - Weston is pretty much doing everything and not getting paid. :S
@@ -39,5 +39,5 @@ Resources:
   - Text Mesh Pro : Through Package Manager
   - Dialogue System for Unity : https://assetstore.unity.com/packages/tools/ai/dialogue-system-for-unity-11672
   - RENDERBOX - Post Processing : https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/renderbox-post-processing-102004
-  
+  - Odin - Inspector and Serializer : https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041
   
