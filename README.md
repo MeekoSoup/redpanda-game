@@ -3,7 +3,7 @@ A 3D Platformer, Adventure game about anime girls running around collecting pand
 
 Built during Steve Hodge's CIS-35 - Game Development for Mobile Devices course of Spring 2019
 
-Unity Version: 2018.X
+Unity Version: 2018.3.7f1
 
 Team Members:
 Weston Campbell - weston.campbell1@gmail.com
