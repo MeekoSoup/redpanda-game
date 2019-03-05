@@ -8,6 +8,8 @@ Unity Version: 2018.3.7f1
 Team Members:
 Weston Campbell - weston.campbell1@gmail.com
 
+Trello: https://trello.com/b/mV7DcuJn/redpanda-game
+
 Planned for Development:
   - Basic player's character movement including walking, running, jumping
   - At least 3 levels
@@ -25,6 +27,14 @@ Design Goals:
 
 Delagation of Labor:
   - Weston is pretty much doing everything and not getting paid. :S
+
+Brainstorming:
+  - Recoloring pandas
+  - Fast bursts of movement
+  - High jumps
+  - Multi-jumping
+  - Flashy collectables
+  - Collectable magnets? Look into effectors
 
 Resources:
   - "Unity-Chan!" Model : https://assetstore.unity.com/packages/3d/characters/unity-chan-model-18705
