@@ -67,7 +67,9 @@ public class Player : MonoBehaviour
         inputV = Input.GetAxis("Vertical");
 
         anim.SetFloat("inputH", inputH);
+        anim.SetFloat("inputHorizontal", inputH);
         anim.SetFloat("inputV", inputV);
+        anim.SetFloat("inputVertical", inputV);
         anim.SetBool("running", running);
 
         float moveX = inputH * walkH * Time.deltaTime;

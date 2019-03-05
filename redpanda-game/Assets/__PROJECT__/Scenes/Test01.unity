@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -410,7 +410,7 @@ MonoBehaviour:
   horizontalInput: Horizontal
   verticallInput: Vertical
   jumpInput: 32
-  strafeInput: 9
+  strafeInput: 0
   sprintInput: 304
   rotateCameraXInput: Mouse X
   rotateCameraYInput: Mouse Y
@@ -436,46 +436,46 @@ MonoBehaviour:
     m_Bits: 512
   groundMinDistance: 0.2
   groundMaxDistance: 0.5
-  locomotionType: 0
+  locomotionType: 2
   lockMovement: 0
   freeRotationSpeed: 10
   strafeRotationSpeed: 10
   jumpAirControl: 1
-  jumpTimer: 0.3
+  jumpTimer: 0.5
   jumpCounter: 0
-  jumpForward: 3
-  jumpHeight: 4
+  jumpForward: 8
+  jumpHeight: 7
   useRootMotion: 0
   freeWalkSpeed: 2.5
-  freeRunningSpeed: 3
-  freeSprintSpeed: 4
+  freeRunningSpeed: 4
+  freeSprintSpeed: 6
   strafeWalkSpeed: 2.5
-  strafeRunningSpeed: 3
-  strafeSprintSpeed: 4
+  strafeRunningSpeed: 3.5
+  strafeSprintSpeed: 5
   stepOffsetEnd: 0.45
   stepOffsetStart: 0.05
   stepSmooth: 4
   slopeLimit: 45
   extraGravity: -10
-  isGrounded: 0
+  isGrounded: 1
   isStrafing: 0
   isSprinting: 0
   isSliding: 0
   isJumping: 0
-  targetDirection: {x: 0, y: 0, z: 0}
-  freeRotation: {x: 0, y: 0, z: 0, w: 0}
+  targetDirection: {x: -0, y: 0, z: 0}
+  freeRotation: {x: 0, y: 0.89307845, z: 0, w: -0.44990098}
   keepDirection: 0
-  animator: {fileID: 0}
-  _rigidbody: {fileID: 0}
+  animator: {fileID: 182979406}
+  _rigidbody: {fileID: 182979403}
   maxFrictionPhysics: {fileID: 0}
   frictionPhysics: {fileID: 0}
   slippyPhysics: {fileID: 0}
-  _capsuleCollider: {fileID: 0}
+  _capsuleCollider: {fileID: 182979402}
   colliderHeight: 0
   input: {x: 0, y: 0}
   speed: 0
   direction: 0
-  verticalVelocity: 0
+  verticalVelocity: -12.644738
   velocity: 0
 --- !u!95 &182979406
 Animator:
@@ -829,7 +829,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235077568}
-  m_LocalRotation: {x: 0.024370983, y: -0.06598202, z: -0.008131705, w: 0.99749}
+  m_LocalRotation: {x: 0.024370987, y: -0.06598202, z: -0.008131707, w: 0.99749}
   m_LocalPosition: {x: -0.021437468, y: -0.000471134, z: -0.0050665224}
   m_LocalScale: {x: 1.000002, y: 1.000002, z: 1.0000015}
   m_Children: []
@@ -2185,7 +2185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571899445}
-  m_LocalRotation: {x: 0.0027491874, y: -0.061828945, z: 0.0046093813, w: 0.9980723}
+  m_LocalRotation: {x: 0.0027491879, y: -0.061828945, z: 0.0046093822, w: 0.9980723}
   m_LocalPosition: {x: -0.016096681, y: 0.000118210985, z: -0.00045832127}
   m_LocalScale: {x: 1.0000032, y: 1.0000025, z: 1.000002}
   m_Children:
@@ -6542,7 +6542,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769235603}
-  m_LocalRotation: {x: -0.01420847, y: -0.0082518505, z: -0.017708754, w: 0.9997082}
+  m_LocalRotation: {x: -0.014208471, y: -0.0082518505, z: -0.017708758, w: 0.9997082}
   m_LocalPosition: {x: -0.019202955, y: 0.0005186548, z: -0.0002499818}
   m_LocalScale: {x: 1.0000023, y: 1.000002, z: 1.0000015}
   m_Children: []
