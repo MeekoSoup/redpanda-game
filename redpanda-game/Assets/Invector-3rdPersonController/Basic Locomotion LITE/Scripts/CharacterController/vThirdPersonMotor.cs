@@ -392,7 +392,7 @@ namespace Invector.CharacterController
             // clear the checkground to free the character to attack on air                
             var onStep = StepOffset();
 
-            if (groundDistance <= 0.05f)
+            if (groundDistance <= 0.05f && !isJumping)
             {
                 isGrounded = true;
                 JumpsLeft = maxJumps; // rpg custom

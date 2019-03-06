@@ -27,7 +27,10 @@ namespace Invector.CharacterController
         {
 
             // conditions to do this action
-            bool jumpConditions = (isGrounded && !isJumping) || (!isGrounded && JumpsLeft > 0); // rpg custom
+
+            bool fromGround = (isGrounded && !isJumping);
+            bool fromAir = !isGrounded;
+            bool jumpConditions = (fromGround || fromAir) && jumpsLeft > 0; // rpg custom
             // return if jumpCondigions is false
             if (!jumpConditions) return;
             // rpg custom
@@ -39,10 +42,10 @@ namespace Invector.CharacterController
 
             // rpg custom
 
-            //if (JumpsLeft < maxJumps)
-            //{
-            //    GameObject sparks = Instantiate(doubleJumpSparks, playerFeet.transform.position, Quaternion.identity);
-            //}
+            if (fromAir)
+            {
+                GameObject sparks = Instantiate(doubleJumpSparks, playerFeet.transform.position, doubleJumpSparks.transform.rotation);
+            }
 
 
             // trigger jump animations            

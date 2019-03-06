@@ -446,7 +446,7 @@ MonoBehaviour:
   jumpCounter: 0
   jumpForward: 8
   jumpHeight: 7
-  maxJumps: 1
+  maxJumps: 2
   playerFeet: {fileID: 1725952124}
   doubleJumpSparks: {fileID: 1352620024937358519, guid: e3a0e9d26f0bcda49b638b97c7353fac,
     type: 3}
