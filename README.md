@@ -47,4 +47,5 @@ Resources:
   - Dialogue System for Unity : https://assetstore.unity.com/packages/tools/ai/dialogue-system-for-unity-11672
   - RENDERBOX - Post Processing : https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/renderbox-post-processing-102004
   - Odin - Inspector and Serializer : https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041
+  - Inferno VFX - https://assetstore.unity.com/packages/vfx/particles/fire-explosions/inferno-vfx-50735
   
