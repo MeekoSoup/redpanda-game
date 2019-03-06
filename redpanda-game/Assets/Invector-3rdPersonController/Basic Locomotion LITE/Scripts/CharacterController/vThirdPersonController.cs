@@ -12,9 +12,15 @@ namespace Invector.CharacterController
 #endif
         }
 
+        // rpg custom
+        public virtual void Dash(bool value)
+        {
+            isDashing = value;
+        }
+
         public virtual void Sprint(bool value)
         {                                   
-            isSprinting = value;            
+            isSprinting = value;
         }
 
         public virtual void Strafe()

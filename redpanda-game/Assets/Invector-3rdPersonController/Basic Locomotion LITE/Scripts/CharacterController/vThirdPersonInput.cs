@@ -14,6 +14,7 @@ namespace Invector.CharacterController
         public string verticallInput = "Vertical";
         public KeyCode jumpInput = KeyCode.Space;
         public KeyCode strafeInput = KeyCode.Tab;
+        public KeyCode dashInput = KeyCode.LeftShift; // rpg custom
         public KeyCode sprintInput = KeyCode.LeftShift;
 
         [Header("Camera Settings")]
@@ -81,6 +82,7 @@ namespace Invector.CharacterController
             if (!cc.lockMovement)
             {
                 MoveCharacter();
+                DashInput();
                 SprintInput();
                 StrafeInput();
                 JumpInput();
@@ -101,12 +103,22 @@ namespace Invector.CharacterController
                 cc.Strafe();
         }
 
+        protected virtual void DashInput()
+        {
+            if (Input.GetKeyDown(dashInput))
+                cc.Dash(true);
+            else
+                cc.Dash(false);
+        }
+
         protected virtual void SprintInput()
         {
+            /* rpg custom
             if (Input.GetKeyDown(sprintInput))
                 cc.Sprint(true);
             else if(Input.GetKeyUp(sprintInput))
                 cc.Sprint(false);
+            */
         }
 
         protected virtual void JumpInput()
