@@ -25,15 +25,26 @@ namespace Invector.CharacterController
 
         public virtual void Jump()
         {
+
             // conditions to do this action
-            bool jumpConditions = (isGrounded && !isJumping) || (!isGrounded && jumpsLeft > 0); // rpg custom
+            bool jumpConditions = (isGrounded && !isJumping) || (!isGrounded && JumpsLeft > 0); // rpg custom
             // return if jumpCondigions is false
             if (!jumpConditions) return;
+            // rpg custom
+            JumpsLeft -= 1;
+
             // trigger jump behaviour
             jumpCounter = jumpTimer;
             isJumping = true;
+
             // rpg custom
-            jumpsLeft -= 1;
+
+            //if (JumpsLeft < maxJumps)
+            //{
+            //    GameObject sparks = Instantiate(doubleJumpSparks, playerFeet.transform.position, Quaternion.identity);
+            //}
+
+
             // trigger jump animations            
             if (_rigidbody.velocity.magnitude < 1)
                 animator.CrossFadeInFixedTime("Jump", 0.1f);

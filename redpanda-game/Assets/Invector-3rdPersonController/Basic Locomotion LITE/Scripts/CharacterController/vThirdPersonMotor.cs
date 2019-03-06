@@ -56,10 +56,13 @@ namespace Invector.CharacterController
         [Tooltip("Add Extra jump height, if you want to jump only with Root Motion leave the value with 0.")]
         public float jumpHeight = 4f;
 
-        // redpanda-game custom scripts
-
+        // rpg custom
         [Tooltip("How many times the player can jump while still in the air."), Min(1), Space]
         public int maxJumps = 1;
+        [Tooltip("Where to spawn doubleJumpSparks.")]
+        public GameObject playerFeet;
+        [Tooltip("GameObject to spawn at feet when player double jumps.")]
+        public GameObject doubleJumpSparks;
 
         [Header("--- Movement Speed ---")]
         [Tooltip("Check to drive the character using RootMotion of the animation")]
@@ -161,8 +164,17 @@ namespace Invector.CharacterController
         public float velocity;                              // velocity to apply to rigidbody  
 
         // rpg custom scripts
-        [HideInInspector]
+        //[HideInInspector]
         public int jumpsLeft = 1;
+        public int JumpsLeft
+        {
+            set
+            {
+                jumpsLeft = value;
+                Debug.Log("Set jumpsLeft to " + jumpsLeft);
+            }
+            get { return jumpsLeft; }
+        }
 
         #endregion
 
@@ -201,8 +213,6 @@ namespace Invector.CharacterController
 
             // capsule collider info
             _capsuleCollider = GetComponent<CapsuleCollider>();
-
-            jumpsLeft = maxJumps;
         }
 
         public virtual void UpdateMotor()
@@ -385,8 +395,7 @@ namespace Invector.CharacterController
             if (groundDistance <= 0.05f)
             {
                 isGrounded = true;
-                // rpg custom
-                jumpsLeft = maxJumps;
+                JumpsLeft = maxJumps; // rpg custom
                 Sliding();
             }
             else
@@ -466,8 +475,7 @@ namespace Invector.CharacterController
             {
                 isSliding = false;
                 isGrounded = true;
-                // rpg custom
-                jumpsLeft = maxJumps;
+                //JumpsLeft = maxJumps; // rpg custom
             }
         }
 
