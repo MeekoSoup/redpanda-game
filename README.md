@@ -36,7 +36,7 @@ Brainstorming:
   - Flashy collectables
   - Collectable magnets? Look into effectors
 
-Resources:
+Resources (Added):
   - "Unity-Chan!" Model : https://assetstore.unity.com/packages/3d/characters/unity-chan-model-18705
   - Acquire-Chan 3D Model : https://assetstore.unity.com/packages/3d/characters/acquire-chan-3d-model-110031
   - Lowpoly Toon Red Panda : https://assetstore.unity.com/packages/3d/characters/animals/lowpoly-toon-red-panda-62455
@@ -47,4 +47,10 @@ Resources:
   - Dialogue System for Unity : https://assetstore.unity.com/packages/tools/ai/dialogue-system-for-unity-11672
   - RENDERBOX - Post Processing : https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/renderbox-post-processing-102004
   - Odin - Inspector and Serializer : https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041
+  - Inferno VFX - https://assetstore.unity.com/packages/vfx/particles/fire-explosions/inferno-vfx-50735
+  
+Resources (Modified):
+  - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
+    * Multi-jumping
+    * Jump particles
   
