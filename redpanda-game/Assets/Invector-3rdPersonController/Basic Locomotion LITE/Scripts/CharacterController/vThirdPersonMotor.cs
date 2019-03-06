@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using Invector;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 namespace Invector.CharacterController
 {
@@ -54,8 +55,10 @@ namespace Invector.CharacterController
         public float jumpForward = 3f;
         [Tooltip("Add Extra jump height, if you want to jump only with Root Motion leave the value with 0.")]
         public float jumpHeight = 4f;
-        [Space]
-        [Tooltip("How many times the player can jump while still in the air."), Min(1)]
+
+        // redpanda-game custom scripts
+
+        [Tooltip("How many times the player can jump while still in the air."), Min(1), Space]
         public int maxJumps = 1;
 
         [Header("--- Movement Speed ---")]
@@ -155,7 +158,11 @@ namespace Invector.CharacterController
         [HideInInspector]
         public float speed, direction, verticalVelocity;    // general variables to the locomotion
         [HideInInspector]
-        public float velocity;                              // velocity to apply to rigidbody       
+        public float velocity;                              // velocity to apply to rigidbody  
+
+        // rpg custom scripts
+        [HideInInspector]
+        public int jumpsLeft = 1;
 
         #endregion
 
@@ -194,6 +201,8 @@ namespace Invector.CharacterController
 
             // capsule collider info
             _capsuleCollider = GetComponent<CapsuleCollider>();
+
+            jumpsLeft = maxJumps;
         }
 
         public virtual void UpdateMotor()
@@ -376,6 +385,8 @@ namespace Invector.CharacterController
             if (groundDistance <= 0.05f)
             {
                 isGrounded = true;
+                // rpg custom
+                jumpsLeft = maxJumps;
                 Sliding();
             }
             else
@@ -455,6 +466,8 @@ namespace Invector.CharacterController
             {
                 isSliding = false;
                 isGrounded = true;
+                // rpg custom
+                jumpsLeft = maxJumps;
             }
         }
 
