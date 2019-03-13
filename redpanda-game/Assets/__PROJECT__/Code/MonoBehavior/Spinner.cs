@@ -25,7 +25,7 @@ public class Spinner : MonoBehaviour
         Vector3 offset = transform.position - sm.player.transform.position;
         dist = offset.sqrMagnitude;
         dist = Vector3.Distance(transform.position, sm.player.transform.position);
-        math = spinSpeed / (dist + 0.1f);
+        math = (100 / (dist + 0.1f)) * spinSpeed;
         if (dist < spinDist)
         {
             transform.Rotate(Vector3.forward * math * Time.deltaTime);
