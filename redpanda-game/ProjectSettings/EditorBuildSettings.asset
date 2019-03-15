@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/__PROJECT__/Scenes/PersistenceTest01.unity
+    guid: b78344582eef5f74396398c59ad81f7a
+  - enabled: 1
+    path: Assets/__PROJECT__/Scenes/PersistenceTest02.unity
+    guid: c0d3b26ca6e086845934d72edc5ec8d9
+  m_configObjects: {}
