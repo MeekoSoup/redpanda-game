@@ -17,8 +17,13 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
-    private void InitGame()
+    public void InitGame()
     {
         playerSpawner = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawner>();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return playerSpawner.Player;
     }
 }

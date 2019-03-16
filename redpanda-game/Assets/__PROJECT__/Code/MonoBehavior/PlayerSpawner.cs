@@ -10,7 +10,13 @@ public class PlayerSpawner : MonoBehaviour
     private GameObject player;
     public GameObject Player
     {
-        get { return player; }
+        get
+        {
+            if (player != null)
+                return player;
+
+            return player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     public void SpawnPlayerDefault()
