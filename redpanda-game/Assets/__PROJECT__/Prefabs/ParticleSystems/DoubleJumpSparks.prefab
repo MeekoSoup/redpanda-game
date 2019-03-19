@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1352620024937358514}
   - component: {fileID: 1352620024937358517}
   - component: {fileID: 1352620024937358516}
-  - component: {fileID: 7221745111784794804}
+  - component: {fileID: 601601209200914780}
   m_Layer: 0
   m_Name: DoubleJumpSparks
   m_TagString: Untagged
@@ -4757,7 +4757,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7221745111784794804
+--- !u!114 &601601209200914780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1352620024937358519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe5fb085ec3786b42b7ca86c912772d9, type: 3}
+  m_Script: {fileID: 11500000, guid: b1fc9477a4c61504cba40d90ded8f337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 1
+  time: 3
