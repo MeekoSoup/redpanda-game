@@ -452,6 +452,10 @@ MonoBehaviour:
   jumpsLeft: 1
   doubleJumpSparks: {fileID: 1352620024937358519, guid: e3a0e9d26f0bcda49b638b97c7353fac,
     type: 3}
+  dashCountMax: 1
+  dashTime: 5
+  dashForce: 5000
+  dashTimer: 0
   useRootMotion: 0
   freeWalkSpeed: 2.5
   freeRunningSpeed: 4

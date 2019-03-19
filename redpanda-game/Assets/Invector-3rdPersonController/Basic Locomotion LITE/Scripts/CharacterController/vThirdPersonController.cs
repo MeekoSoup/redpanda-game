@@ -16,6 +16,7 @@ namespace Invector.CharacterController
         public virtual void Dash(bool value)
         {
             isDashing = value;
+            dashTimer = dashTime;
         }
 
         public virtual void Sprint(bool value)

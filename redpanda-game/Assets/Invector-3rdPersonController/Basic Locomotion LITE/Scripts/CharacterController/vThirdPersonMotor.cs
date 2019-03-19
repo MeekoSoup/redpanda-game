@@ -72,6 +72,16 @@ namespace Invector.CharacterController
         }
         public GameObject doubleJumpSparks;
 
+        [Header("Dash Control")]
+        [Tooltip("How many times the player can dash before recharge."), Space]
+        public int dashCountMax = 1;
+        [Tooltip("How long the player remains dashing.")]
+        public float dashTime = 1.5f;
+        [Tooltip("How much force to apply when dashing.")]
+        public float dashForce = 5f;
+        [HideInInspector]
+        public float dashTimer = 0;
+
 
 
         [Header("--- Movement Speed ---")]
@@ -220,6 +230,7 @@ namespace Invector.CharacterController
             CheckGround();
             ControlJumpBehaviour();
             ControlLocomotion();
+            DashControl();
         }
 
         #region Locomotion 
@@ -365,6 +376,18 @@ namespace Invector.CharacterController
                 Vector3 p2 = p1 + Vector3.up * _capsuleCollider.height;
                 return Physics.CapsuleCastAll(p1, p2, _capsuleCollider.radius * 0.5f, transform.forward, 0.6f, groundLayer).Length == 0;
             }
+        }
+
+        public void DashControl()
+        {
+            if (!isDashing) return;
+            dashTimer -= Time.deltaTime;
+            if (dashTimer <= 0)
+            {
+                dashTimer = 0;
+                isDashing = false;
+            }
+            _rigidbody.AddForce(transform.forward * dashForce * 100);
         }
 
         #endregion
