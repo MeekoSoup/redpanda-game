@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour
         if (verticalInput > runThreshold)
             speed = runSpeed;
 
-        transform.Translate(playerCamera.transform.forward * verticalInput * speed * Time.deltaTime);
+        Vector3 dir = playerCamera.transform.forward;
+        dir.y = 0;
+
+        transform.Translate(dir * verticalInput * speed * Time.deltaTime);
     }
 
     private void UpdateRotation()
