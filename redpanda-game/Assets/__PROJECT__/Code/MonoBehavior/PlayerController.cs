@@ -16,6 +16,13 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Camera Controls
+
+    [Header("Camera Controls"), Space]
+    public GameObject playerCamera;
+
+    #endregion
+
     #region Input Properties
 
     [Header("Input Controls")]
@@ -64,8 +71,6 @@ public class PlayerController : MonoBehaviour
         // get horizontal and vertical input values
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
-
     }
 
     private void UpdateMovement()
@@ -75,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateVerticleMovement()
     {
+        if (playerCamera == null)
+            return;
+
         if (Mathf.Approximately(verticalInput, 0.0f))
         {
             isMoving = false;
@@ -88,6 +96,6 @@ public class PlayerController : MonoBehaviour
         if (verticalInput > runThreshold)
             speed = runSpeed;
 
-        transform.Translate(transform.forward * verticalInput * speed * Time.deltaTime);
+        transform.Translate(playerCamera.transform.forward * verticalInput * speed * Time.deltaTime);
     }
 }
