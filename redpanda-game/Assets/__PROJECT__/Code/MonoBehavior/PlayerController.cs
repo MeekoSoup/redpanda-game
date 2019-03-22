@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
+    #region Model Properties
+
+    [Header("Model Properties")]
+    public GameObject model;
+
+    #endregion
+
     #region Movement Properties
 
     [Header("Movement Properties")]
@@ -52,8 +58,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        if (model == null)
+        {
+            Debug.Log("Error: Didn't assign model.");
+            return;
+        }
+
+        rb = model.GetComponent<Rigidbody>();
+        anim = model.GetComponent<Animator>();
 
         // initialize properties
         isMoving = false;
