@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateMovement()
     {
         UpdateVerticleMovement();
+        UpdateHorizontalMovement();
         //UpdateRotation();
     }
 
@@ -111,15 +112,42 @@ public class PlayerController : MonoBehaviour
 
         Vector3 dir = playerCamera.transform.forward;
         dir.y = 0;
+        dir.Normalize();
 
         transform.Translate(dir * verticalInput * speed * Time.deltaTime);
     }
 
+    private void UpdateHorizontalMovement()
+    {
+        if (playerCamera == null)
+            return;
+
+        if (Mathf.Approximately(horizontalInput, 0.0f))
+        {
+            isMoving = false;
+            return;
+        }
+
+        isMoving = true;
+
+        float speed = walkSpeed;
+
+        if (horizontalInput > runThreshold)
+            speed = runSpeed;
+
+        Vector3 dir = playerCamera.transform.right;
+        dir.y = 0;
+        dir.Normalize();
+
+        transform.Translate(dir * horizontalInput * speed * Time.deltaTime);
+    }
+
     private void UpdateRotation()
     {
-        Vector3 dir = playerCamera.transform.forward;
+        Vector3 dir = rb.velocity;
         dir.y = 0f;
+        dir.Normalize();
 
-        transform.rotation = Quaternion.LookRotation(dir);
+        model.transform.rotation = Quaternion.LookRotation(dir);
     }
 }
