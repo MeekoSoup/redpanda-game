@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float sprintSpeed = 5f;
     [Tooltip("At what percent of the joystick control should we be running?"), Space]
     public float runThreshold = 0.25f;
+    public float rotationSpeed = 360f;
 
     #endregion
 
@@ -52,7 +53,10 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool isMoving;
+    [HideInInspector]
     public bool isGrounded;
+
+    private Vector3 previousPos = Vector3.zero;
 
     #endregion
 
@@ -89,7 +93,7 @@ public class PlayerController : MonoBehaviour
     {
         UpdateVerticleMovement();
         UpdateHorizontalMovement();
-        //UpdateRotation();
+        UpdateRotation();
     }
 
     private void UpdateVerticleMovement()
@@ -144,10 +148,21 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateRotation()
     {
-        Vector3 dir = rb.velocity;
-        dir.y = 0f;
-        dir.Normalize();
+        // Gets velocity, but only the direction part of it
+        Vector3 currentPos = transform.position;
+        Vector3 velocity = (currentPos - previousPos) / Time.deltaTime;
+        previousPos = currentPos;
+        velocity.Normalize();
+        velocity.y = 0;
 
-        model.transform.rotation = Quaternion.LookRotation(dir);
+        // if velocity is zero, don't change rotation
+        if (Mathf.Approximately(0f, velocity.x) && Mathf.Approximately(0f, velocity.z))
+            return;
+
+        Quaternion rot = model.transform.rotation;
+        Quaternion lookRotation = Quaternion.LookRotation(velocity);
+
+        //model.transform.rotation = Quaternion.LookRotation(velocity);
+        model.transform.rotation = Quaternion.RotateTowards(rot, lookRotation, rotationSpeed * Time.deltaTime);
     }
 }
