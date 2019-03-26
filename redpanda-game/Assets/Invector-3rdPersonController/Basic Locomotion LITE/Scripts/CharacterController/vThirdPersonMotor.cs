@@ -274,13 +274,13 @@ namespace Invector.CharacterController
             {
                 Vector3 lookDirection = targetDirection.normalized;
                 freeRotation = Quaternion.LookRotation(lookDirection, transform.up);
-                var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
+                var differenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
                 var eulerY = transform.eulerAngles.y;
 
                 // apply free directional rotation while not turning180 animations
                 if (isGrounded || (!isGrounded && jumpAirControl))
                 {
-                    if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
+                    if (differenceRotation < 0 || differenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
                     var euler = new Vector3(transform.eulerAngles.x, eulerY, transform.eulerAngles.z);
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(euler), freeRotationSpeed * Time.deltaTime);
                 }               

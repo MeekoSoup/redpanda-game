@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     #region Model Properties
@@ -15,8 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Properties")]
     public float walkSpeed = 2.5f;
-    public float runSpeed = 3.5f;
-    public float sprintSpeed = 5f;
+    public float runSpeed = 5f;
+    public float sprintSpeed = 10f;
     [Tooltip("At what percent of the joystick control should we be running?"), Space]
     public float runThreshold = 0.25f;
     public float rotationSpeed = 360f;
@@ -37,8 +38,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode dashKey = KeyCode.LeftShift;
 
-    private float horizontalInput;
-    private float verticalInput;
+    private Vector2 input;
 
     #endregion
 
@@ -52,11 +52,11 @@ public class PlayerController : MonoBehaviour
     #region Hidden Properties
 
     [HideInInspector]
-    public bool isMoving;
-    [HideInInspector]
-    public bool isGrounded;
+    public bool isMoving, isGrounded, isSprinting;
 
-    private Vector3 previousPos = Vector3.zero;
+    public float speed;
+
+    private Vector3 previousPosition, currentPosition, velocity;
 
     #endregion
 
@@ -68,31 +68,41 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        rb = model.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         anim = model.GetComponent<Animator>();
 
         // initialize properties
         isMoving = false;
         isGrounded = false;
+
+        previousPosition = Vector3.zero;
+        currentPosition = Vector3.zero;
+        velocity = Vector3.zero;
     }
 
     private void Update()
     {
         UpdateInput();
         UpdateMovement();
+        UpdateAnimations();
     }
 
     private void UpdateInput()
     {
         // get horizontal and vertical input values
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        input.x = Input.GetAxis("Horizontal");
+        input.y = Input.GetAxis("Vertical");
+        speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
+        speed = Mathf.Clamp01(speed);
+
+        isSprinting = Input.GetKey(sprintKey);
     }
 
     private void UpdateMovement()
     {
+        isMoving = !Mathf.Approximately(speed, 0f);
+
         UpdateVerticleMovement();
-        UpdateHorizontalMovement();
         UpdateRotation();
     }
 
@@ -101,57 +111,34 @@ public class PlayerController : MonoBehaviour
         if (playerCamera == null)
             return;
 
-        if (Mathf.Approximately(verticalInput, 0.0f))
-        {
-            isMoving = false;
+        if (!isMoving)
             return;
-        }
 
-        isMoving = true;
+        float speedMod = walkSpeed;
 
-        float speed = walkSpeed;
+        if (input.y > runThreshold)
+            speedMod = runSpeed;
 
-        if (verticalInput > runThreshold)
-            speed = runSpeed;
+        if (isSprinting)
+            speedMod = sprintSpeed;
 
-        Vector3 dir = playerCamera.transform.forward;
+        Vector3 dir = Vector3.zero;
+        if (!Mathf.Approximately(input.y, 0f))
+            dir += playerCamera.transform.forward * Mathf.Sign(input.y);
+        if (!Mathf.Approximately(input.x, 0f))
+            dir += playerCamera.transform.right * Mathf.Sign(input.x);
         dir.y = 0;
         dir.Normalize();
 
-        transform.Translate(dir * verticalInput * speed * Time.deltaTime);
-    }
-
-    private void UpdateHorizontalMovement()
-    {
-        if (playerCamera == null)
-            return;
-
-        if (Mathf.Approximately(horizontalInput, 0.0f))
-        {
-            isMoving = false;
-            return;
-        }
-
-        isMoving = true;
-
-        float speed = walkSpeed;
-
-        if (horizontalInput > runThreshold)
-            speed = runSpeed;
-
-        Vector3 dir = playerCamera.transform.right;
-        dir.y = 0;
-        dir.Normalize();
-
-        transform.Translate(dir * horizontalInput * speed * Time.deltaTime);
+        transform.Translate(dir * speed * speedMod * Time.deltaTime);
     }
 
     private void UpdateRotation()
     {
         // Gets velocity, but only the direction part of it
-        Vector3 currentPos = transform.position;
-        Vector3 velocity = (currentPos - previousPos) / Time.deltaTime;
-        previousPos = currentPos;
+        currentPosition = transform.position;
+        velocity = (currentPosition - previousPosition) / Time.deltaTime;
+        previousPosition = currentPosition;
         velocity.Normalize();
         velocity.y = 0;
 
@@ -162,7 +149,14 @@ public class PlayerController : MonoBehaviour
         Quaternion rot = model.transform.rotation;
         Quaternion lookRotation = Quaternion.LookRotation(velocity);
 
-        //model.transform.rotation = Quaternion.LookRotation(velocity);
         model.transform.rotation = Quaternion.RotateTowards(rot, lookRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void UpdateAnimations()
+    {
+        //anim.SetFloat("InputVertical", speed, 0.1f, Time.deltaTime); // dampening
+        if (isSprinting) speed += 0.5f;
+        anim.SetFloat("InputVertical", speed);
+
     }
 }
