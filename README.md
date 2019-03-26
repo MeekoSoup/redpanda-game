@@ -48,6 +48,7 @@ Resources (Added):
   - RENDERBOX - Post Processing : https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/renderbox-post-processing-102004
   - Odin - Inspector and Serializer : https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041
   - Inferno VFX - https://assetstore.unity.com/packages/vfx/particles/fire-explosions/inferno-vfx-50735
+  - RPG Character Mecanim Animation Pack FREE : https://assetstore.unity.com/packages/3d/animations/rpg-character-mecanim-animation-pack-free-65284
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
