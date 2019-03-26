@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Model Properties")]
     public GameObject model;
+    public float height = 3f;
+    public float radius = 1f;
 
     #endregion
 
@@ -21,6 +23,14 @@ public class PlayerController : MonoBehaviour
     [Tooltip("At what percent of the joystick control should we be running?"), Space]
     public float runThreshold = 0.25f;
     public float rotationSpeed = 360f;
+
+    [Header("Jump Properties")]
+    public float jumpSpeed = 5f;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+
+    [Header("Ground & Collision Properties")]
+    public LayerMask groundLayer;
 
     #endregion
 
@@ -52,7 +62,10 @@ public class PlayerController : MonoBehaviour
     #region Hidden Properties
 
     [HideInInspector]
-    public bool isMoving, isGrounded, isSprinting;
+    public bool isMoving, 
+        isGrounded, 
+        isSprinting, 
+        isJumping;
 
     public float speed;
 
@@ -73,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
         // initialize properties
         isMoving = false;
-        isGrounded = false;
+        isGrounded = true;
 
         previousPosition = Vector3.zero;
         currentPosition = Vector3.zero;
@@ -94,6 +107,8 @@ public class PlayerController : MonoBehaviour
         input.y = Input.GetAxis("Vertical");
         speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
         speed = Mathf.Clamp01(speed);
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
+            isJumping = true;
 
         isSprinting = Input.GetKey(sprintKey);
     }
@@ -102,8 +117,38 @@ public class PlayerController : MonoBehaviour
     {
         isMoving = !Mathf.Approximately(speed, 0f);
 
+        isGrounded = IsGrounded();
         UpdateVerticleMovement();
         UpdateRotation();
+        UpdateJumping();
+    }
+
+    private bool IsGrounded()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = (height + radius) / 1.9f;
+
+        Debug.DrawRay(position, direction, Color.green);
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null)
+            return true;
+
+        return false;
+    }
+
+    private void UpdateJumping()
+    {
+        if (!isJumping)
+            return;
+
+        if (!IsGrounded())
+            return;
+
+        isJumping = false;
+
+        rb.velocity = Vector3.up * jumpSpeed;
     }
 
     private void UpdateVerticleMovement()
@@ -124,9 +169,9 @@ public class PlayerController : MonoBehaviour
 
         Vector3 dir = Vector3.zero;
         if (!Mathf.Approximately(input.y, 0f))
-            dir += playerCamera.transform.forward * Mathf.Sign(input.y);
+            dir += playerCamera.transform.forward * input.normalized.y;
         if (!Mathf.Approximately(input.x, 0f))
-            dir += playerCamera.transform.right * Mathf.Sign(input.x);
+            dir += playerCamera.transform.right * input.normalized.x;
         dir.y = 0;
         dir.Normalize();
 
@@ -157,6 +202,7 @@ public class PlayerController : MonoBehaviour
         //anim.SetFloat("InputVertical", speed, 0.1f, Time.deltaTime); // dampening
         if (isSprinting) speed += 0.5f;
         anim.SetFloat("InputVertical", speed);
+        anim.SetFloat("VerticalVelocity", rb.velocity.y);
 
     }
 }
