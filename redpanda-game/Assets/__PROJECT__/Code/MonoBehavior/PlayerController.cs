@@ -203,7 +203,9 @@ public class PlayerController : MonoBehaviour
             return;
 
         Quaternion rot = model.transform.rotation;
-        Quaternion lookRotation = Quaternion.LookRotation(velocity);
+        Quaternion lookRotation = Quaternion.identity;
+        if (velocity != Vector3.zero)
+            lookRotation = Quaternion.LookRotation(velocity);
 
         model.transform.rotation = Quaternion.RotateTowards(rot, lookRotation, rotationSpeed * Time.deltaTime);
     }
