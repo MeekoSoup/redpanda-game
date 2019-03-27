@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     #region Hidden Properties
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool isMoving, 
         isGrounded, 
         isSprinting, 
@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
         previousPosition = Vector3.zero;
         currentPosition = Vector3.zero;
         velocity = Vector3.zero;
+
+        UpdateGrounded();
     }
 
     private void Update()
@@ -109,7 +111,11 @@ public class PlayerController : MonoBehaviour
         speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
         speed = Mathf.Clamp01(speed);
         if (Input.GetKeyDown(jumpKey) && isGrounded)
+        {
             isJumping = true;
+            isGrounded = false;
+            Debug.Log("Jump!");
+        }
 
         isSprinting = Input.GetKey(sprintKey);
     }
@@ -118,30 +124,11 @@ public class PlayerController : MonoBehaviour
     {
         isMoving = !Mathf.Approximately(speed, 0f);
 
-        UpdateGrounded();
         UpdateVerticleMovement();
         UpdateRotation();
         UpdateJumping();
-    }
 
-    private void UpdateGrounded()
-    {
-        Vector2 position = transform.position;
-        Vector2 direction = Vector3.down;
-        float distance = .1f;
-
-        Debug.DrawRay(position, direction * distance, Color.red);
-
-        RaycastHit hit;
-        if (Physics.Raycast(position, direction, out hit, distance, groundLayer) && groundObject != null)
-        {
-            isGrounded = true;
-            isJumping = false;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        UpdateGrounded();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -166,6 +153,32 @@ public class PlayerController : MonoBehaviour
         isJumping = false;
 
         rb.velocity = Vector3.up * jumpSpeed;
+    }
+
+    private void UpdateGrounded()
+    {
+        if (rb.velocity.y > 0)
+        {
+            isGrounded = false;
+            return;
+        }
+
+        Vector2 position = transform.position;
+        Vector2 direction = Vector3.down;
+        float distance = .1f;
+
+        Debug.DrawRay(position, direction * distance, Color.red);
+
+        RaycastHit hit;
+        if (Physics.Raycast(position, direction, out hit, distance, groundLayer) && groundObject != null)
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void UpdateVerticleMovement()
