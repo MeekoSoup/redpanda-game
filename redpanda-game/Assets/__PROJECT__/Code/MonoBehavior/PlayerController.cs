@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
         // initialize properties
         isMoving = false;
-        isGrounded = true;
+        isGrounded = false;
 
         previousPosition = Vector3.zero;
         currentPosition = Vector3.zero;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         input.y = Input.GetAxis("Vertical");
         speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
         speed = Mathf.Clamp01(speed);
-        if (Input.GetKeyDown(jumpKey) && IsGrounded())
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
             isJumping = true;
 
         isSprinting = Input.GetKey(sprintKey);
@@ -117,13 +117,14 @@ public class PlayerController : MonoBehaviour
     private void UpdateMovement()
     {
         isMoving = !Mathf.Approximately(speed, 0f);
-        
+
+        UpdateGrounded();
         UpdateVerticleMovement();
         UpdateRotation();
         UpdateJumping();
     }
 
-    private bool IsGrounded()
+    private void UpdateGrounded()
     {
         Vector2 position = transform.position;
         Vector2 direction = Vector3.down;
@@ -133,9 +134,14 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit hit;
         if (Physics.Raycast(position, direction, out hit, distance, groundLayer) && groundObject != null)
-            return true;
-
-        return false;
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -154,7 +160,7 @@ public class PlayerController : MonoBehaviour
         if (!isJumping)
             return;
 
-        if (!IsGrounded())
+        if (!isGrounded)
             return;
 
         isJumping = false;
@@ -216,7 +222,7 @@ public class PlayerController : MonoBehaviour
         if (isSprinting) speed += 0.5f;
         anim.SetFloat("InputVertical", speed);
         anim.SetFloat("VerticalVelocity", rb.velocity.y);
-        anim.SetBool("IsGrounded", IsGrounded());
+        anim.SetBool("IsGrounded", isGrounded);
 
     }
 }
