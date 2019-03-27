@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     private Vector3 previousPosition, currentPosition, velocity;
+    private GameObject groundObject;
 
     #endregion
 
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour
         input.y = Input.GetAxis("Vertical");
         speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
         speed = Mathf.Clamp01(speed);
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && IsGrounded())
             isJumping = true;
 
         isSprinting = Input.GetKey(sprintKey);
@@ -116,8 +117,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateMovement()
     {
         isMoving = !Mathf.Approximately(speed, 0f);
-
-        isGrounded = IsGrounded();
+        
         UpdateVerticleMovement();
         UpdateRotation();
         UpdateJumping();
@@ -126,16 +126,27 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = (height + radius) / 1.9f;
+        Vector2 direction = Vector3.down;
+        float distance = .1f;
 
-        Debug.DrawRay(position, direction, Color.green);
+        Debug.DrawRay(position, direction * distance, Color.red);
 
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        if (hit.collider != null)
+        RaycastHit hit;
+        if (Physics.Raycast(position, direction, out hit, distance, groundLayer) && groundObject != null)
             return true;
 
         return false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        LayerMask layer = collision.gameObject.layer;
+        bool matched = ((1 << layer) & groundLayer) != 0;
+
+        if (matched)
+        {
+            groundObject = collision.gameObject;
+        }
     }
 
     private void UpdateJumping()
@@ -203,6 +214,7 @@ public class PlayerController : MonoBehaviour
         if (isSprinting) speed += 0.5f;
         anim.SetFloat("InputVertical", speed);
         anim.SetFloat("VerticalVelocity", rb.velocity.y);
+        anim.SetBool("IsGrounded", IsGrounded());
 
     }
 }

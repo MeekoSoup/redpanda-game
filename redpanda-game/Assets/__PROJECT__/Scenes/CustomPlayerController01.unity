@@ -572,11 +572,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1185689587}
+  height: 3
+  radius: 1
   walkSpeed: 2.5
   runSpeed: 5
   sprintSpeed: 12
   runThreshold: 0.25
   rotationSpeed: 360
+  jumpSpeed: 5
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
   playerCamera: {fileID: 1178256380}
   jumpKey: 32
   sprintKey: 304
@@ -584,6 +592,7 @@ MonoBehaviour:
   isMoving: 0
   isGrounded: 0
   isSprinting: 0
+  isJumping: 0
   speed: 0
 --- !u!54 &864317904
 Rigidbody:
@@ -1176,7 +1185,7 @@ GameObject:
   - component: {fileID: 1495356188}
   - component: {fileID: 1495356187}
   - component: {fileID: 1495356186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
