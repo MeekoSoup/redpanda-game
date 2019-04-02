@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     private Vector3 previousPosition, currentPosition, velocity;
-    private GameObject groundObject;
+    private bool groundCollision;
 
     #endregion
 
@@ -110,49 +110,32 @@ public class PlayerController : MonoBehaviour
         input.y = Input.GetAxis("Vertical");
         speed = Mathf.Abs(input.x) + Mathf.Abs(input.y);
         speed = Mathf.Clamp01(speed);
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
-        {
-            isJumping = true;
-            isGrounded = false;
-            Debug.Log("Jump!");
-        }
+
+        if (Input.GetKey(jumpKey))
+            Jump();
 
         isSprinting = Input.GetKey(sprintKey);
+    }
+
+    public void Jump()
+    {
+        if (isJumping || !isGrounded)
+            return;
+
+        isJumping = true;
+
+        rb.AddForce(Vector3.up * jumpSpeed);
     }
 
     private void UpdateMovement()
     {
         isMoving = !Mathf.Approximately(speed, 0f);
 
+        //UpdateJumping();
         UpdateVerticleMovement();
         UpdateRotation();
-        UpdateJumping();
 
         UpdateGrounded();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        LayerMask layer = collision.gameObject.layer;
-        bool matched = ((1 << layer) & groundLayer) != 0;
-
-        if (matched)
-        {
-            groundObject = collision.gameObject;
-        }
-    }
-
-    private void UpdateJumping()
-    {
-        if (!isJumping)
-            return;
-
-        if (!isGrounded)
-            return;
-
-        isJumping = false;
-
-        rb.velocity = Vector3.up * jumpSpeed;
     }
 
     private void UpdateGrounded()
@@ -160,17 +143,18 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.y > 0)
         {
             isGrounded = false;
-            return;
+            return; 
         }
 
-        Vector2 position = transform.position;
-        Vector2 direction = Vector3.down;
-        float distance = .1f;
+        Vector3 position = transform.position;
+        Vector3 direction = Vector3.down;
+        float distance = 0.1f;
+        bool hit = Physics.Raycast(position, direction, distance, groundLayer);
+        Color color = hit ? Color.green : Color.red;
 
-        Debug.DrawRay(position, direction * distance, Color.red);
+        Debug.DrawRay(position, direction * distance, color);
 
-        RaycastHit hit;
-        if (Physics.Raycast(position, direction, out hit, distance, groundLayer) && groundObject != null)
+        if (hit && groundCollision)
         {
             isGrounded = true;
             isJumping = false;
@@ -237,5 +221,21 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("VerticalVelocity", rb.velocity.y);
         anim.SetBool("IsGrounded", isGrounded);
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        LayerMask layer = collision.gameObject.layer;
+        bool matched = ((1 << layer) & groundLayer) != 0;
+
+        if (matched)
+        {
+            groundCollision = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        groundCollision = false;
     }
 }
