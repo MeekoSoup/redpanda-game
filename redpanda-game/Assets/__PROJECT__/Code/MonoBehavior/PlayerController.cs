@@ -65,12 +65,19 @@ public class PlayerController : MonoBehaviour
     public bool isMoving, 
         isGrounded, 
         isSprinting, 
-        isJumping;
+        isJumping,
+        onLedge;
+
+    //[HideInInspector]
+    public float LedgeRayDistance = 0.1f;
+    public float LedgeNudgeForce = 0.1f;
 
     public float speed;
 
     private Vector3 previousPosition, currentPosition, velocity;
     private bool groundCollision;
+    private GameObject groundObject;
+    private RaycastHit ledgeInfo;
 
     #endregion
 
@@ -88,12 +95,11 @@ public class PlayerController : MonoBehaviour
         // initialize properties
         isMoving = false;
         isGrounded = false;
+        onLedge = false;
 
         previousPosition = Vector3.zero;
         currentPosition = Vector3.zero;
         velocity = Vector3.zero;
-
-        UpdateGrounded();
     }
 
     private void Update()
@@ -124,45 +130,78 @@ public class PlayerController : MonoBehaviour
 
         isJumping = true;
 
-        rb.AddForce(Vector3.up * jumpSpeed);
+        rb.velocity = Vector3.up * jumpSpeed;
     }
 
     private void UpdateMovement()
     {
         isMoving = !Mathf.Approximately(speed, 0f);
-
-        //UpdateJumping();
+        
         UpdateVerticleMovement();
         UpdateRotation();
 
+        if (rb.velocity.y < 0)
+            isJumping = false;
+
         UpdateGrounded();
+        UpdateOnLedge();
+        LedgeNudge();
+    }
+
+    private void LedgeNudge()
+    {
+        if (groundObject == null)
+            return;
+
+        if (onLedge)
+            return;
+
+        if (isJumping)
+            return;
+
+        var direction = (transform.position - groundObject.transform.position).normalized;
+        direction.y = 0;
+        Debug.Log("Nudging in " + direction * LedgeNudgeForce);
+        transform.Translate(direction * LedgeNudgeForce);
     }
 
     private void UpdateGrounded()
     {
         if (rb.velocity.y > 0)
         {
+            isJumping = true;
             isGrounded = false;
-            return; 
+        }
+        else
+            isJumping = false;
+
+        if (!HasGroundObject())
+        {
+            isGrounded = false;
+            return;
         }
 
-        Vector3 position = transform.position;
-        Vector3 direction = Vector3.down;
-        float distance = 0.1f;
-        bool hit = Physics.Raycast(position, direction, distance, groundLayer);
-        Color color = hit ? Color.green : Color.red;
-
-        Debug.DrawRay(position, direction * distance, color);
-
-        if (hit && groundCollision)
+        if (onLedge)
         {
             isGrounded = true;
-            isJumping = false;
         }
         else
         {
-            isGrounded = false;
+            onLedge = true;
         }
+    }
+
+    private void UpdateOnLedge()
+    {
+        Ray ledgeRay = new Ray(transform.position, Vector3.down);
+        onLedge = Physics.Raycast(ledgeRay, out ledgeInfo, LedgeRayDistance, groundLayer);
+        Debug.DrawRay(transform.position, Vector3.down * LedgeRayDistance, onLedge ? Color.green : Color.red);
+        if (ledgeInfo.collider == null)
+        {
+            Debug.Log("No Ledge");
+            return;
+        }
+        Debug.Log(ledgeInfo.collider.gameObject);
     }
 
     private void UpdateVerticleMovement()
@@ -220,7 +259,11 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("InputVertical", speed);
         anim.SetFloat("VerticalVelocity", rb.velocity.y);
         anim.SetBool("IsGrounded", isGrounded);
+    }
 
+    private bool HasGroundObject()
+    {
+        return groundObject != null;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -230,12 +273,12 @@ public class PlayerController : MonoBehaviour
 
         if (matched)
         {
-            groundCollision = true;
+            groundObject = collision.gameObject;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        groundCollision = false;
+        groundObject = null;
     }
 }

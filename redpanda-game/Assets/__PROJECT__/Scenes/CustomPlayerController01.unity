@@ -363,7 +363,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285579414}
-  m_LocalRotation: {x: 0.0681747, y: 0.052271124, z: -0.003576727, w: 0.99629676}
+  m_LocalRotation: {x: 0.06810755, y: 0.06845025, z: -0.0046838224, w: 0.9953161}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -552,7 +552,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '*Raycast not always following player'
+  m_text: '*Raycasting working, but issues with collider...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -621,10 +621,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 678197819}
-    characterCount: 36
+    characterCount: 48
     spriteCount: 0
-    spaceCount: 4
-    wordCount: 5
+    spaceCount: 5
+    wordCount: 6
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -777,6 +777,9 @@ MonoBehaviour:
   isGrounded: 0
   isSprinting: 0
   isJumping: 0
+  onLedge: 0
+  LedgeRayDistance: 0.1
+  LedgeNudgeForce: 0.1
   speed: 0
 --- !u!54 &864317904
 Rigidbody:
@@ -975,7 +978,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178256380}
-  m_LocalRotation: {x: 0.05004129, y: 0.052327543, z: -0.0026254375, w: 0.997372}
+  m_LocalRotation: {x: 0.049992036, y: 0.06852414, z: -0.003438072, w: 0.99639016}
   m_LocalPosition: {x: 0, y: 2.5, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1315,7 +1318,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389474105}
-  m_LocalRotation: {x: 0.031939253, y: 0.052366562, z: -0.0016757689, w: 0.99811566}
+  m_LocalRotation: {x: 0.03190781, y: 0.06857523, z: -0.002194439, w: 0.9971332}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2009,7 +2012,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965490806}
-  m_LocalRotation: {x: 0.050041277, y: 0.052327543, z: -0.0026253373, w: 0.997372}
+  m_LocalRotation: {x: 0.04999202, y: 0.06852414, z: -0.0034379712, w: 0.9963902}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
