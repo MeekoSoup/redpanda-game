@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour
         isGrounded, 
         isSprinting, 
         isJumping,
-        onLedge;
+        onLedge,
+        contact;
 
     //[HideInInspector]
     public float LedgeRayDistance = 0.1f;
@@ -104,6 +105,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        contact = false;
+
         UpdateInput();
         UpdateMovement();
         UpdateAnimations();
