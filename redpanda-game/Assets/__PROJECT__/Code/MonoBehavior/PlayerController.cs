@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Model Properties")]
     public GameObject model;
     public float height = 3f;
-    public float radius = 1f;
+    public float radius = 0.5f;
 
     #endregion
 
@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
         isGrounded = false;
         onLedge = false;
+        contact = false;
 
         previousPosition = Vector3.zero;
         currentPosition = Vector3.zero;
@@ -110,6 +111,12 @@ public class PlayerController : MonoBehaviour
         UpdateInput();
         UpdateMovement();
         UpdateAnimations();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = contact ? Color.cyan : Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     private void UpdateInput()
