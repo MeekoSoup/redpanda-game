@@ -172,6 +172,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7a5e041328691fd4e812dc127d62b9ba,
         type: 2}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.dialogueUI
+      value: 
+      objectReference: {fileID: 1295405663}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
 --- !u!1 &48430438
@@ -7964,13 +7968,19 @@ Transform:
   m_Father: {fileID: 1190649446}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1295405663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 122694, guid: 9052074e55e1f964c8c25e4b6d86be6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1869959815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1295405664 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11451678, guid: 9052074e55e1f964c8c25e4b6d86be6c,
     type: 3}
   m_PrefabInstance: {fileID: 1869959815}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1295405663}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9a9540f98bb79346b296ec5feb51073, type: 3}
@@ -10103,7 +10113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 8
+  trigger: 16
   condition:
     luaConditions: []
     questConditions: []
@@ -10137,9 +10147,9 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: 
-  conversationConversant: {fileID: 0}
-  conversationActor: {fileID: 0}
+  conversation: New Conversation 1
+  conversationConversant: {fileID: 182979401}
+  conversationActor: {fileID: 1636030074}
   exclusive: 0
   skipIfNoValidEntries: 1
   stopConversationOnTriggerExit: 0
