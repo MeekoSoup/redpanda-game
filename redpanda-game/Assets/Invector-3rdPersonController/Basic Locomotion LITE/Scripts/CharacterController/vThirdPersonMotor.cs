@@ -282,19 +282,19 @@ namespace Invector.CharacterController
                 {
                     if (differenceRotation < 0 || differenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
                     var euler = new Vector3(transform.eulerAngles.x, eulerY, transform.eulerAngles.z);
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(euler), freeRotationSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(euler), freeRotationSpeed * GameManager.instance.GameDeltaTime());
                 }               
             }
         }
         protected void ControlSpeed(float velocity)
         {
-            if (Time.deltaTime == 0) return;
+            if (GameManager.instance.GameDeltaTime() == 0) return;
 
             if (useRootMotion)
             {
-                Vector3 v = (animator.deltaPosition * (velocity > 0 ? velocity : 1f)) / Time.deltaTime;
+                Vector3 v = (animator.deltaPosition * (velocity > 0 ? velocity : 1f)) / GameManager.instance.GameDeltaTime();
                 v.y = _rigidbody.velocity.y;
-                _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, v, 20f * Time.deltaTime);
+                _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, v, 20f * GameManager.instance.GameDeltaTime());
             }
             else
             {
@@ -307,12 +307,12 @@ namespace Invector.CharacterController
                 {
                     Vector3 v = (transform.TransformDirection(new Vector3(input.x, 0, input.y)) * (velocity > 0 ? velocity : 1f));
                     v.y = _rigidbody.velocity.y;
-                    _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, v, 20f * Time.deltaTime);
+                    _rigidbody.velocity = Vector3.Lerp(_rigidbody.velocity, v, 20f * GameManager.instance.GameDeltaTime());
                 }
                 else
                 {
                     _rigidbody.velocity = velY;
-                    _rigidbody.AddForce(transform.forward * (velocity * speed) * Time.deltaTime, ForceMode.VelocityChange);
+                    _rigidbody.AddForce(transform.forward * (velocity * speed) * GameManager.instance.GameDeltaTime(), ForceMode.VelocityChange);
                 }
             }
         }
@@ -325,7 +325,7 @@ namespace Invector.CharacterController
         {
             if (!isJumping) return;
 
-            jumpCounter -= Time.deltaTime;
+            jumpCounter -= GameManager.instance.GameDeltaTime();
             if (jumpCounter <= 0)
             {
                 jumpCounter = 0;
@@ -381,7 +381,7 @@ namespace Invector.CharacterController
         public void DashControl()
         {
             if (!isDashing) return;
-            dashTimer -= Time.deltaTime;
+            dashTimer -= GameManager.instance.GameDeltaTime();
             if (dashTimer <= 0)
             {
                 dashTimer = 0;
@@ -430,11 +430,11 @@ namespace Invector.CharacterController
                     verticalVelocity = _rigidbody.velocity.y;
                     // apply extra gravity when falling
                     if (!onStep && !isJumping)
-                        _rigidbody.AddForce(transform.up * extraGravity * Time.deltaTime, ForceMode.VelocityChange);
+                        _rigidbody.AddForce(transform.up * extraGravity * GameManager.instance.GameDeltaTime(), ForceMode.VelocityChange);
                 }
                 else if (!onStep && !isJumping)
                 {
-                    _rigidbody.AddForce(transform.up * (extraGravity * 2 * Time.deltaTime), ForceMode.VelocityChange);
+                    _rigidbody.AddForce(transform.up * (extraGravity * 2 * GameManager.instance.GameDeltaTime()), ForceMode.VelocityChange);
                 }
             }
         }
@@ -534,7 +534,7 @@ namespace Invector.CharacterController
                 Quaternion rot = Quaternion.LookRotation(target.position - transform.position);
                 var newPos = new Vector3(transform.eulerAngles.x, rot.eulerAngles.y, transform.eulerAngles.z);
                 targetRotation = Quaternion.Euler(newPos);
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newPos), strafeRotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newPos), strafeRotationSpeed * GameManager.instance.GameDeltaTime());
             }
         }
 

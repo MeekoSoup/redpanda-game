@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 182979404}
   - component: {fileID: 182979403}
   - component: {fileID: 182979402}
+  - component: {fileID: 182979407}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -575,6 +576,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &182979407
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182979400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.24
+  m_Height: 1.58
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1 &196723499
 GameObject:
   m_ObjectHideFlags: 0
@@ -10113,7 +10128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 16
+  trigger: 8
   condition:
     luaConditions: []
     questConditions: []
@@ -10665,7 +10680,7 @@ GameObject:
   - component: {fileID: 1762733966}
   - component: {fileID: 1762733967}
   m_Layer: 8
-  m_Name: InGameMenuContainer
+  m_Name: PlayerMenu
   m_TagString: PlayerMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10709,6 +10724,7 @@ MonoBehaviour:
   mainMenuImage: {fileID: 979572285}
   exitImage: {fileID: 314148847}
   cameraMount: {fileID: 573018364}
+  cameraLerpSpeed: 5
 --- !u!1 &1769235603
 GameObject:
   m_ObjectHideFlags: 0

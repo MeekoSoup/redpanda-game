@@ -8,6 +8,6 @@ public class TimedDeath : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, time);
+        Destroy(gameObject, time * GameManager.instance.GameDeltaTime());
     }
 }

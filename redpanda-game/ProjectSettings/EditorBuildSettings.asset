@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/__PROJECT__/Scenes/PersistenceTest01.unity
-    guid: b78344582eef5f74396398c59ad81f7a
+    path: Assets/__PROJECT__/Scenes/TestDialogue.unity
+    guid: cb65b608ccb9ab64eb7a3d7fd66ff446
   - enabled: 1
-    path: Assets/__PROJECT__/Scenes/PersistenceTest02.unity
-    guid: c0d3b26ca6e086845934d72edc5ec8d9
+    path: Assets/__PROJECT__/Scenes/UnityChansHouse.unity
+    guid: 4d2fd98d34a68df419410f1745d3b9b7
+  - enabled: 1
+    path: Assets/__PROJECT__/Scenes/TestChamber01.unity
+    guid: 3c719816dae054748b398e2f9176b2fd
   m_configObjects: {}

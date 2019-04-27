@@ -24,6 +24,6 @@ public class Fidgetter : MonoBehaviour
             int r = Random.Range(0, animations.Length);
             anim.Play(animations[r], 0, 0);
         }
-        fidgetTimeElapsed -= Time.deltaTime;
+        fidgetTimeElapsed -= GameManager.instance.MetaDeltaTime();
     }
 }

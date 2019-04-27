@@ -171,9 +171,9 @@ public class vThirdPersonCamera : MonoBehaviour
         if (currentTarget == null)
             return;
 
-        distance = Mathf.Lerp(distance, defaultDistance, smoothFollow * Time.deltaTime);
+        distance = Mathf.Lerp(distance, defaultDistance, smoothFollow * GameManager.instance.MetaDeltaTime());
         //_camera.fieldOfView = fov;
-        cullingDistance = Mathf.Lerp(cullingDistance, distance, Time.deltaTime);
+        cullingDistance = Mathf.Lerp(cullingDistance, distance, GameManager.instance.MetaDeltaTime());
         var camDir = (forward * targetLookAt.forward) + (rightOffset * targetLookAt.right);
 
         camDir = camDir.normalized;
@@ -220,11 +220,11 @@ public class vThirdPersonCamera : MonoBehaviour
         targetLookAt.position = current_cPos;
 
         Quaternion newRot = Quaternion.Euler(mouseY, mouseX, 0);
-        targetLookAt.rotation = Quaternion.Slerp(targetLookAt.rotation, newRot, smoothCameraRotation * Time.deltaTime);
+        targetLookAt.rotation = Quaternion.Slerp(targetLookAt.rotation, newRot, smoothCameraRotation * GameManager.instance.MetaDeltaTime());
         transform.position = current_cPos + (camDir * (distance));
         var rotation = Quaternion.LookRotation((lookPoint) - transform.position);
 
-        //lookTargetOffSet = Vector3.Lerp(lookTargetOffSet, Vector3.zero, 1 * Time.fixedDeltaTime);
+        //lookTargetOffSet = Vector3.Lerp(lookTargetOffSet, Vector3.zero, 1 * GameManager.instance.FixedMetaDeltaTime());
 
         //rotation.eulerAngles += rotationOffSet + lookTargetOffSet;
         transform.rotation = rotation;

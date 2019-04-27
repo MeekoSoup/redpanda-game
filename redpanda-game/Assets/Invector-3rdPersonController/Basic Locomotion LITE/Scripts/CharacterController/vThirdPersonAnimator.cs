@@ -19,11 +19,11 @@ namespace Invector.CharacterController
             if (isStrafing)
             {
                 // strafe movement get the input 1 or -1
-                animator.SetFloat("InputHorizontal", direction, 0.1f, Time.deltaTime);
+                animator.SetFloat("InputHorizontal", direction, 0.1f, GameManager.instance.GameDeltaTime());
             }
 
             // fre movement get the input 0 to 1
-            animator.SetFloat("InputVertical", speed, 0.1f, Time.deltaTime);
+            animator.SetFloat("InputVertical", speed, 0.1f, GameManager.instance.GameDeltaTime());
         }
 
         public void OnAnimatorMove()

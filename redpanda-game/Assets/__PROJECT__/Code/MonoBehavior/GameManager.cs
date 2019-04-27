@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -13,11 +11,14 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public bool paused = false;
     public bool lookingAtPlayerMenu = false;
-    public float menuLerpTime = 1f;
     [Space]
     public TMP_Text scoreText;
     [Space]
     public KeyCode playerMenuKey = KeyCode.Escape;
+    //[HideInInspector]
+    public float gameTimeScale = 1f; // used for most things outside menus and cameras
+    public float metaTimeScale = 1f; // used for cameras and menus
+    public float realTimeScale = 1f; // used for cameras and menus
 
     private vThirdPersonCamera vtpcScript;
 
@@ -33,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public void InitGame()
     {
+        gameTimeScale = 1f;
+        metaTimeScale = 1f;
+
         playerSpawner = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawner>();
         playerMenu = GameObject.FindGameObjectWithTag("PlayerMenu").GetComponent<PlayerMenu>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -46,8 +50,34 @@ public class GameManager : MonoBehaviour
         if (scoreText == null)
             return;
 
+        playerMenu.gameObject.SetActive(false);
+
         scoreText.text = score.ToString();
     }
+
+    #region Time Functions
+
+    public float GameDeltaTime()
+    {
+        return Time.deltaTime * Mathf.Max(gameTimeScale, 0f);
+    }
+
+    public float MetaDeltaTime()
+    {
+        return Time.deltaTime * Mathf.Max(metaTimeScale, 0f);
+    }
+
+    public float FixedGameDeltaTime()
+    {
+        return Time.fixedDeltaTime * Mathf.Max(gameTimeScale, 0f);
+    }
+
+    public float FixedMetaDeltaTime()
+    {
+        return Time.fixedDeltaTime * Mathf.Max(metaTimeScale, 0f);
+    }
+
+    #endregion
 
     public GameObject GetPlayer()
     {
@@ -56,17 +86,25 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Time.timeScale = realTimeScale;
         scoreText.text = score.ToString();
 
+        // pause menu
         if (Input.GetKeyDown(playerMenuKey))
         {
             paused = !paused;
             lookingAtPlayerMenu = !lookingAtPlayerMenu;
             vtpcScript.enabled = !vtpcScript.enabled;
             if (lookingAtPlayerMenu)
+            {
                 Cursor.lockState = CursorLockMode.None;
+                playerMenu.gameObject.SetActive(true);
+            }
             else
+            {
                 Cursor.lockState = CursorLockMode.Locked;
+                playerMenu.gameObject.SetActive(false);
+            }
         }
 
         if (!lookingAtPlayerMenu)
@@ -79,8 +117,8 @@ public class GameManager : MonoBehaviour
         }
 
         mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, 
-            playerMenu.cameraMount.transform.position, menuLerpTime * Time.deltaTime);
+            playerMenu.cameraMount.transform.position, playerMenu.cameraLerpSpeed * MetaDeltaTime());
         mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, 
-            playerMenu.cameraMount.transform.rotation, menuLerpTime * Time.deltaTime);
+            playerMenu.cameraMount.transform.rotation, playerMenu.cameraLerpSpeed * MetaDeltaTime());
     }
 }

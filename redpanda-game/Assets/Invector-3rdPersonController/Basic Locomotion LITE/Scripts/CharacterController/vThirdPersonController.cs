@@ -65,7 +65,7 @@ namespace Invector.CharacterController
         public virtual void RotateWithAnotherTransform(Transform referenceTransform)
         {
             var newRotation = new Vector3(transform.eulerAngles.x, referenceTransform.eulerAngles.y, transform.eulerAngles.z);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newRotation), strafeRotationSpeed * Time.fixedDeltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(newRotation), strafeRotationSpeed * GameManager.instance.FixedGameDeltaTime());
             targetRotation = transform.rotation;
         }
     }

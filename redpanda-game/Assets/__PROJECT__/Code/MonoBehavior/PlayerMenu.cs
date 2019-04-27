@@ -18,4 +18,5 @@ public class PlayerMenu : MonoBehaviour
     public Image exitImage;
     [Space]
     public GameObject cameraMount;
+    public float cameraLerpSpeed = 3f;
 }

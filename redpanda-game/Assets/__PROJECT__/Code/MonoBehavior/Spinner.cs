@@ -37,7 +37,7 @@ public class Spinner : MonoBehaviour
             return;
 
         dist = (transform.position - player.transform.position).sqrMagnitude;
-        spinFactor = Mathf.Clamp(spinSpeed / (dist + 1) * spinSpeed * Time.deltaTime, spinSpeedMin, spinSpeedMax);
+        spinFactor = Mathf.Clamp(spinSpeed / (dist + 1) * spinSpeed * GameManager.instance.GameDeltaTime(), spinSpeedMin, spinSpeedMax);
         transform.Rotate(Vector3.forward * spinFactor);
     }
 }
