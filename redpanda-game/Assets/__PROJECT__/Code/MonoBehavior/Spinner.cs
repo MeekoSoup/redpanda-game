@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Spinner : MonoBehaviour
+public class Spinner : BaseBehavior
 {
     public float spinSpeed = 20f;
     public float spinSpeedMin = 1f;
@@ -12,7 +12,7 @@ public class Spinner : MonoBehaviour
     // Cached private properties
     private GameObject player = null;
     private float dist = 0;
-    private float spinFactor = 0;
+    private float spinFactor = 1;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class Spinner : MonoBehaviour
             return;
 
         dist = (transform.position - player.transform.position).sqrMagnitude;
-        spinFactor = Mathf.Clamp(spinSpeed / (dist + 1) * spinSpeed * GameManager.instance.GameDeltaTime(), spinSpeedMin, spinSpeedMax);
+        spinFactor = Mathf.Clamp(spinSpeed / (dist + 1) * spinSpeed * time.deltaTime, spinSpeedMin, spinSpeedMax);
         transform.Rotate(Vector3.forward * spinFactor);
     }
 }

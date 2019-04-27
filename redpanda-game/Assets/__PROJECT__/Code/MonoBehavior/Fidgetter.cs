@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fidgetter : MonoBehaviour
+public class Fidgetter : BaseBehavior
 {
     public string[] animations;
     public float fidgetTime = 5f;
@@ -24,6 +24,6 @@ public class Fidgetter : MonoBehaviour
             int r = Random.Range(0, animations.Length);
             anim.Play(animations[r], 0, 0);
         }
-        fidgetTimeElapsed -= GameManager.instance.MetaDeltaTime();
+        fidgetTimeElapsed -= time.deltaTime;
     }
 }
