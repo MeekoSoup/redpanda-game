@@ -174,9 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36260cef97c2d8b47b70a7335205d7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpeed: 100
+  spinFactor: 5
   spinSpeedMin: 1
   spinSpeedMax: 10
+  maxDist: 50
+  minDist: 1
 --- !u!114 &8019356734083739972
 MonoBehaviour:
   m_ObjectHideFlags: 0

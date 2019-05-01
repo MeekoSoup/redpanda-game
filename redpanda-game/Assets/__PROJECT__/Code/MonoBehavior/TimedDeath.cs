@@ -8,6 +8,6 @@ public class TimedDeath : BaseBehavior
 
     private void Start()
     {
-        Destroy(gameObject, timeUntilDeath * time.deltaTime);
+        Destroy(gameObject, timeUntilDeath);
     }
 }

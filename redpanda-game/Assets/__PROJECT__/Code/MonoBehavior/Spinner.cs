@@ -45,9 +45,9 @@ public class Spinner : BaseBehavior
         float speedDiff = spinSpeedMax - spinSpeedMin;
 
         if (dist > maxDist)
-            spinSpeed = spinSpeedMax;
-        else if (dist < minDist)
             spinSpeed = spinSpeedMin;
+        else if (dist < minDist)
+            spinSpeed = spinSpeedMax;
         else
             spinSpeed = ((distRatio * speedDiff) + spinSpeedMin) * spinFactor;
 

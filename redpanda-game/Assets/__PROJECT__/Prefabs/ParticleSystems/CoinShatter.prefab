@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 537703885044255670}
   - component: {fileID: 4073734518956402992}
   - component: {fileID: 148826848731824094}
+  - component: {fileID: 7695130619501337866}
   m_Layer: 0
   m_Name: CoinShatter
   m_TagString: Untagged
@@ -4769,4 +4770,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc9477a4c61504cba40d90ded8f337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 4
+  timeUntilDeath: 5
+--- !u!114 &7695130619501337866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741076241215212406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recordingInterval: 0.5
+  _mode: 1
+  _globalClockKey: Particles
+  _rewindable: 0
+  _recordingDuration: 30
