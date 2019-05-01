@@ -82,4 +82,9 @@ public class PlayerMenu : MonoBehaviour
     {
         GameManager.instance.ToggleHints();
     }
+
+    public void ExitGame()
+    {
+        GameManager.instance.ExitGame();
+    }
 }

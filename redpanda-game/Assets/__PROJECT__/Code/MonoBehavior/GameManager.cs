@@ -215,4 +215,10 @@ public class GameManager : BaseBehavior
         playerMenu.HintsOff();
         playerMenu.hintsObject.SetActive(false);
     }
+
+    public void ExitGame()
+    {
+        Debug.Log("Quiting game!");
+        Application.Quit();
+    }
 }
