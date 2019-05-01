@@ -126,35 +126,29 @@ public class GameManager : BaseBehavior
     }
 
     public void TogglePauseGame()
-    {
-        paused = !paused;
-        lookingAtPlayerMenu = !lookingAtPlayerMenu;
+    {       
         vtpcScript.enabled = !vtpcScript.enabled;
-        if (lookingAtPlayerMenu)
+        if (paused)
         {
-            Cursor.lockState = CursorLockMode.None;
-            playerMenu.gameObject.SetActive(true);  
+            UnpauseGame();
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            playerMenu.gameObject.SetActive(false);
+            PauseGame();
         }
     }
 
     public void PauseGame()
     {
         paused = true;
-        lookingAtPlayerMenu = true;
         vtpcScript.enabled = false;
         Cursor.lockState = CursorLockMode.None;
-        playerMenu.gameObject.SetActive(true);
+        playerMenu.gameObject.SetActive(true);  
     }
 
     public void UnpauseGame()
     {
         paused = false;
-        lookingAtPlayerMenu = false;
         vtpcScript.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         playerMenu.gameObject.SetActive(false);
@@ -162,7 +156,7 @@ public class GameManager : BaseBehavior
 
     public void PausedGameEffects() 
     {
-        if (!lookingAtPlayerMenu)
+        if (!paused)
             return;
 
         if (mainCamera == null)
@@ -188,7 +182,6 @@ public class GameManager : BaseBehavior
             Debug.LogError("Error: Couldn't find time   .");
             return;
         }
-
 
         mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, 
             playerMenu.cameraMount.transform.position, playerMenu.cameraLerpSpeed * time.deltaTime);
