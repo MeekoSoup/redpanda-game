@@ -75,6 +75,8 @@ public class GameManager : BaseBehavior
         playerMenu.gameObject.SetActive(false);
         hints = true;
 
+        UnpauseGame();
+
         HintsOn();
 
         hud.scoreText.text = score.ToString();
@@ -153,7 +155,7 @@ public class GameManager : BaseBehavior
     {
         paused = false;
         lookingAtPlayerMenu = false;
-        vtpcScript.enabled = !true;
+        vtpcScript.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         playerMenu.gameObject.SetActive(false);
     }

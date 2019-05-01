@@ -87,4 +87,9 @@ public class PlayerMenu : MonoBehaviour
     {
         GameManager.instance.ExitGame();
     }
+
+    public void ResumeGame()
+    {
+        GameManager.instance.UnpauseGame();
+    }
 }
