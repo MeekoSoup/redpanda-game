@@ -15,11 +15,11 @@ public class Loader : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.scoreText = scoreText;
+            GameManager.instance.hud.scoreText = scoreText;
             return;
         }
 
         Instantiate(gameManager);
-        GameManager.instance.scoreText = scoreText;
+        GameManager.instance.hud.scoreText = scoreText;
     }
 }

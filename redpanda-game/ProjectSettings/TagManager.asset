@@ -7,6 +7,7 @@ TagManager:
   - PlayerSpawner
   - SceneManager
   - PlayerMenu
+  - HUD
   layers:
   - Default
   - TransparentFX

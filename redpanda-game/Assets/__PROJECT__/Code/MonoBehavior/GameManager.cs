@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using TMPro;
+using Chronos;
 
-public class GameManager : MonoBehaviour
+public class GameManager : BaseBehavior
 {
     public static GameManager instance = null;
     public PlayerSpawner playerSpawner;
     public PlayerMenu playerMenu;
     public GameObject mainCamera;
+    public HUD hud;
     [Space]
     public int score = 0;
     public bool paused = false;
     public bool lookingAtPlayerMenu = false;
-    [Space]
-    public TMP_Text scoreText;
+    public bool hints = true;
     [Space]
     public KeyCode playerMenuKey = KeyCode.Escape;
     //[HideInInspector]
@@ -22,12 +23,16 @@ public class GameManager : MonoBehaviour
 
     private vThirdPersonCamera vtpcScript;
 
+    private Clock rootClock;
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
+
+        //rootClock = Timekeeper.instance.Clock("root");
 
         InitGame();
     }
@@ -40,19 +45,36 @@ public class GameManager : MonoBehaviour
         playerSpawner = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawner>();
         playerMenu = GameObject.FindGameObjectWithTag("PlayerMenu").GetComponent<PlayerMenu>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+
         if (mainCamera == null)
         {
             Debug.LogError("Error: MainCamera not found.");
             return;
         }
-        vtpcScript = mainCamera.GetComponent<vThirdPersonCamera>();
 
-        if (scoreText == null)
+        if (hud == null)
+        {
+            Debug.LogError("Error: HUD not found.");
             return;
+        }
+        
+        if (playerMenu == null)
+        {
+            Debug.LogError("Error: PlayerMenu not found.");
+            return;
+        }
+
+        if (playerSpawner == null)
+        {
+            Debug.LogError("Error: PlayerSpawner not found.");
+            return;
+        }
+        vtpcScript = mainCamera.GetComponent<vThirdPersonCamera>();
 
         playerMenu.gameObject.SetActive(false);
 
-        scoreText.text = score.ToString();
+        hud.scoreText.text = score.ToString();
     }
 
     #region Time Functions
@@ -86,27 +108,55 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = realTimeScale;
-        scoreText.text = score.ToString();
+        //  Time.timeScale = realTimeScale;
+        hud.scoreText.text = score.ToString();
 
         // pause menu
         if (Input.GetKeyDown(playerMenuKey))
         {
-            paused = !paused;
-            lookingAtPlayerMenu = !lookingAtPlayerMenu;
-            vtpcScript.enabled = !vtpcScript.enabled;
-            if (lookingAtPlayerMenu)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                playerMenu.gameObject.SetActive(true);
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                playerMenu.gameObject.SetActive(false);
-            }
+            TogglePauseGame();
         }
 
+        PausedGameEffects();
+    }
+
+    public void TogglePauseGame()
+    {
+        paused = !paused;
+        lookingAtPlayerMenu = !lookingAtPlayerMenu;
+        vtpcScript.enabled = !vtpcScript.enabled;
+        if (lookingAtPlayerMenu)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            playerMenu.gameObject.SetActive(true);  
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            playerMenu.gameObject.SetActive(false);
+        }
+    }
+
+    public void PauseGame()
+    {
+        paused = true;
+        lookingAtPlayerMenu = true;
+        vtpcScript.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        playerMenu.gameObject.SetActive(true);
+    }
+
+    public void UnpauseGame()
+    {
+        paused = false;
+        lookingAtPlayerMenu = false;
+        vtpcScript.enabled = !true;
+        Cursor.lockState = CursorLockMode.Locked;
+        playerMenu.gameObject.SetActive(false);
+    }
+
+    public void PausedGameEffects() 
+    {
         if (!lookingAtPlayerMenu)
             return;
 
@@ -116,9 +166,30 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (playerMenu == null)
+        {
+            Debug.LogError("Error: Couldn't find playerMenu.");
+            return;
+        }
+
+        if (playerMenu.cameraMount == null)
+        {
+            Debug.LogError("Error: Couldn't find playerMenu.cameraMount .");
+            return;
+        }
+
+        if (time == null)
+        {
+            Debug.LogError("Error: Couldn't find time   .");
+            return;
+        }
+
+
         mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, 
-            playerMenu.cameraMount.transform.position, playerMenu.cameraLerpSpeed * MetaDeltaTime());
-        mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, 
-            playerMenu.cameraMount.transform.rotation, playerMenu.cameraLerpSpeed * MetaDeltaTime());
+            playerMenu.cameraMount.transform.position, playerMenu.cameraLerpSpeed * time.deltaTime);
+        mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation,
+            playerMenu.cameraMount.transform.rotation, playerMenu.cameraLerpSpeed * time.deltaTime);
     }
+
+
 }
