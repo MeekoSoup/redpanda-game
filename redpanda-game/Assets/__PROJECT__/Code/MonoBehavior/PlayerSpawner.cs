@@ -39,5 +39,6 @@ public class PlayerSpawner : MonoBehaviour
         player = Instantiate(playerPrefab,
             playerSpawnPoint.transform.position,
             playerSpawnPoint.transform.rotation);
+        player.transform.SetParent(playerSpawnPoint.transform);
     }
 }

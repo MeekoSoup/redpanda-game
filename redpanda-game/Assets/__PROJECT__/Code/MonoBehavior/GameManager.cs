@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using Chronos;
+using UnityEngine.SceneManagement;
 
 public class GameManager : BaseBehavior
 {
@@ -215,5 +216,10 @@ public class GameManager : BaseBehavior
     {
         Debug.Log("Quiting game!");
         Application.Quit();
+    }
+
+    public void LoadScene(string level)
+    {
+        SceneManager.LoadScene(level);
     }
 }
