@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinCollectable : MonoBehaviour
+public class CoinCollectable : BaseBehavior
 {
     public int worth = 5;
     [Space]
@@ -26,7 +26,7 @@ public class CoinCollectable : MonoBehaviour
 
         if (seeking)
         {
-            transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, player.transform.position, speed * time.deltaTime);
             if (dist <= collectDist)
                 Collect();
 

@@ -18,6 +18,8 @@ public class PlayerMenu : MonoBehaviour
     public GameObject mainMenuButton;
     public GameObject exitButton;
     [Space]
+    public GameObject hintsObject;
+    [Space]
     public TMP_Text hintsText;
     public TMP_Text soundText;
     public TMP_Text musicText;
@@ -74,5 +76,10 @@ public class PlayerMenu : MonoBehaviour
         Image image = hintsButton.GetComponent<Image>();
         image.color = toggleOffColor;
         hintsText.text = "Hints Off";
+    }
+
+    public void GameManagerToggleHints()
+    {
+        GameManager.instance.ToggleHints();
     }
 }

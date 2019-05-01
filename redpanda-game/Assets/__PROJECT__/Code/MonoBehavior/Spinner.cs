@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class Spinner : BaseBehavior
 {
-    public float spinSpeed = 20f;
+    [Range(0.1f, 50f)]
+    public float spinFactor = 20f;
     public float spinSpeedMin = 1f;
     public float spinSpeedMax = 25f;
+    public float maxDist = 50f;
+    public float minDist = 3f;
 
     // Cached private properties
     private GameObject player = null;
     private float dist = 0;
-    private float spinFactor = 1;
+    private float spinSpeed;
 
     private void Awake()
     {
@@ -37,7 +40,19 @@ public class Spinner : BaseBehavior
             return;
 
         dist = (transform.position - player.transform.position).sqrMagnitude;
-        spinFactor = Mathf.Clamp(spinSpeed / (dist + 1) * spinSpeed * time.deltaTime, spinSpeedMin, spinSpeedMax);
-        transform.Rotate(Vector3.forward * spinFactor);
+        //float distRatio = (dist - minDist) / (maxDist - minDist);
+        float distRatio = (maxDist - minDist) / (dist - minDist);
+        float speedDiff = spinSpeedMax - spinSpeedMin;
+
+        if (dist > maxDist)
+            spinSpeed = spinSpeedMax;
+        else if (dist < minDist)
+            spinSpeed = spinSpeedMin;
+        else
+            spinSpeed = ((distRatio * speedDiff) + spinSpeedMin) * spinFactor;
+
+        // spinSpeed = Mathf.Clamp(spinFactor / (dist + 1), spinSpeedMin, spinSpeedMax) * time.deltaTime;
+
+        transform.Rotate(Vector3.forward * spinSpeed * time.deltaTime);
     }
 }

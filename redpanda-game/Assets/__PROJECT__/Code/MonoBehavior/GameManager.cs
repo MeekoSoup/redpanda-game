@@ -73,6 +73,9 @@ public class GameManager : BaseBehavior
         vtpcScript = mainCamera.GetComponent<vThirdPersonCamera>();
 
         playerMenu.gameObject.SetActive(false);
+        hints = true;
+
+        HintsOn();
 
         hud.scoreText.text = score.ToString();
     }
@@ -191,5 +194,25 @@ public class GameManager : BaseBehavior
             playerMenu.cameraMount.transform.rotation, playerMenu.cameraLerpSpeed * time.deltaTime);
     }
 
+    public void ToggleHints()
+    {
+        if (hints)
+            HintsOff();
+        else
+            HintsOn();
+    }
 
+    public void HintsOn()
+    {
+        hints = true;
+        playerMenu.HintsOn();
+        playerMenu.hintsObject.SetActive(true);
+    }
+
+    public void HintsOff()
+    {
+        hints = false;
+        playerMenu.HintsOff();
+        playerMenu.hintsObject.SetActive(false);
+    }
 }

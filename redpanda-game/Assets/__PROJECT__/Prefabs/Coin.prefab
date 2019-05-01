@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981289453684122432}
   - component: {fileID: 1539436428}
+  - component: {fileID: 8329168984255206874}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -50,6 +51,23 @@ MonoBehaviour:
   speed: 2.25
   coinShatter: {fileID: 2741076241215212406, guid: 84b9eddeef59a4e4ba5d9dc3a7b14398,
     type: 3}
+--- !u!114 &8329168984255206874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981289453684122433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6090da511f8374135a15dd8655adcd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recordingInterval: 0.5
+  _mode: 1
+  _globalClockKey: Collectables
+  _rewindable: 0
+  _recordingDuration: 30
 --- !u!1 &981289454324155769
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,5 +192,5 @@ MonoBehaviour:
   _recordingInterval: 0.5
   _mode: 1
   _globalClockKey: Collectables
-  _rewindable: 1
+  _rewindable: 0
   _recordingDuration: 30
