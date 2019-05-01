@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedDeath : MonoBehaviour
+public class TimedDeath : BaseBehavior
 {
-    public float time = 5f;
+    public float timeUntilDeath = 5f;
 
     private void Start()
     {
-        Destroy(gameObject, time * GameManager.instance.GameDeltaTime());
+        Destroy(gameObject, timeUntilDeath * time.deltaTime);
     }
 }

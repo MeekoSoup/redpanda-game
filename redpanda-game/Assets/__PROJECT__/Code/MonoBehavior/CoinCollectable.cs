@@ -41,7 +41,7 @@ public class CoinCollectable : BaseBehavior
     {
         Instantiate(coinShatter, transform.position, transform.rotation);
         GameManager.instance.score += worth;
-        //Destroy(gameObject);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
 }
