@@ -5,6 +5,11 @@ using Chronos;
 
 public class TimeControl : MonoBehaviour
 {
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Update()
     {
         Clock clock = Timekeeper.instance.Clock("Collectables");

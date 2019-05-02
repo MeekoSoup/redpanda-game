@@ -22,6 +22,12 @@ public class CoinCollectable : BaseBehavior
 
     private void Update()
     {
+        if (player == null)
+        {
+            Debug.LogError("Error: Player not found.");
+            return;
+        }
+
         float dist = (player.transform.position - transform.position).sqrMagnitude;
 
         if (seeking)

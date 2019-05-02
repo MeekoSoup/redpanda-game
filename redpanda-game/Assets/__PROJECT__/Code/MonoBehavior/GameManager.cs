@@ -35,6 +35,8 @@ public class GameManager : BaseBehavior
 
         //rootClock = Timekeeper.instance.Clock("root");
 
+        DontDestroyOnLoad(gameObject);
+
         InitGame();
     }
 
@@ -218,8 +220,8 @@ public class GameManager : BaseBehavior
         Application.Quit();
     }
 
-    public void LoadScene(string level)
+    public void LoadScene(string scene)
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene(scene);
     }
 }

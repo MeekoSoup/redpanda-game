@@ -15,4 +15,9 @@ public class Loader : MonoBehaviour
 
         Instantiate(gameManager);
     }
+
+    public void LoadLevel(string scene)
+    {
+        GameManager.instance.LoadScene(scene);
+    }
 }
