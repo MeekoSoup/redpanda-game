@@ -31,7 +31,7 @@ public class TutorialInputManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.instance.GetPlayer();
+        player = GameManager.instance.Player;
     }
 
     private void Update()

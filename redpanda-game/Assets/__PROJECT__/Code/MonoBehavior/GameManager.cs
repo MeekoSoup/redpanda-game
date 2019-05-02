@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : BaseBehavior
 {
     public static GameManager instance = null;
-    public PlayerSpawner playerSpawner;
+    public GameObject playerPrefab;
     public PlayerMenu playerMenu;
+    public GameObject playerSpawnPoint;
+    public GameObject timeKeeper;
     public GameObject mainCamera;
     public HUD hud;
     [Space]
@@ -23,8 +25,27 @@ public class GameManager : BaseBehavior
     public float realTimeScale = 1f; // used for cameras and menus
 
     private vThirdPersonCamera vtpcScript;
-
     private Clock rootClock;
+    private GameObject player;
+
+    public GameObject Player
+    {
+        get
+        {
+            if (player != null)
+                return player;
+
+            player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null)
+            {
+                player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
+                player.transform.SetParent(playerSpawnPoint.transform);
+            }  
+
+            return player;
+        }
+    }
 
     private void Awake()
     {
@@ -33,9 +54,12 @@ public class GameManager : BaseBehavior
         else
             Destroy(gameObject);
 
+        DontDestroyOnLoad(gameObject);
+
         //rootClock = Timekeeper.instance.Clock("root");
 
-        DontDestroyOnLoad(gameObject);
+        player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
+        player.transform.SetParent(playerSpawnPoint.transform);
 
         InitGame();
     }
@@ -45,7 +69,6 @@ public class GameManager : BaseBehavior
         gameTimeScale = 1f;
         metaTimeScale = 1f;
 
-        playerSpawner = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawner>();
         playerMenu = GameObject.FindGameObjectWithTag("PlayerMenu").GetComponent<PlayerMenu>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
@@ -65,12 +88,6 @@ public class GameManager : BaseBehavior
         if (playerMenu == null)
         {
             Debug.LogError("Error: PlayerMenu not found.");
-            return;
-        }
-
-        if (playerSpawner == null)
-        {
-            Debug.LogError("Error: PlayerSpawner not found.");
             return;
         }
         vtpcScript = mainCamera.GetComponent<vThirdPersonCamera>();
@@ -108,11 +125,6 @@ public class GameManager : BaseBehavior
     }
 
     #endregion
-
-    public GameObject GetPlayer()
-    {
-        return playerSpawner.Player;
-    }
 
     private void Update()
     {

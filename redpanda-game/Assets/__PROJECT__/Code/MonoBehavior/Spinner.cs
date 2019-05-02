@@ -25,13 +25,13 @@ public class Spinner : BaseBehavior
             return;
         }
 
-        if (GameManager.instance.GetPlayer() == null)
+        if (GameManager.instance.Player == null)
         {
             Debug.Log("GameManager.instance.GetPlayer() == null");
             return;
         }
 
-        player = GameManager.instance.GetPlayer();
+        player = GameManager.instance.Player    ;
     }
 
     private void Update()

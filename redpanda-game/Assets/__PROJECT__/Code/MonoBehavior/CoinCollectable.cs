@@ -17,7 +17,7 @@ public class CoinCollectable : BaseBehavior
 
     private void Awake()
     {
-        player = GameManager.instance.GetPlayer();
+        player = GameManager.instance.Player;
     }
 
     private void Update()
