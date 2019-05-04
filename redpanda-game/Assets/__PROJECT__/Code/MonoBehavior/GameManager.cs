@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : BaseBehavior
 {
     public static GameManager instance = null;
-    public GameObject playerPrefab;
+    public GameObject player;
     public PlayerMenu playerMenu;
     public GameObject playerSpawnPoint;
     public GameObject timeKeeper;
     public GameObject mainCamera;
+    public GameObject hintsObject;
     public HUD hud;
     [Space]
     public int score = 0;
@@ -26,7 +27,6 @@ public class GameManager : BaseBehavior
 
     private vThirdPersonCamera vtpcScript;
     private Clock rootClock;
-    private GameObject player;
 
     public GameObject Player
     {
@@ -39,8 +39,7 @@ public class GameManager : BaseBehavior
 
             if (player == null)
             {
-                player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
-                player.transform.SetParent(playerSpawnPoint.transform);
+                Debug.LogError("Error: No Player object found.");
             }  
 
             return player;
@@ -53,13 +52,6 @@ public class GameManager : BaseBehavior
             instance = this;
         else
             Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-
-        //rootClock = Timekeeper.instance.Clock("root");
-
-        player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
-        player.transform.SetParent(playerSpawnPoint.transform);
 
         InitGame();
     }
@@ -216,14 +208,14 @@ public class GameManager : BaseBehavior
     {
         hints = true;
         playerMenu.HintsOn();
-        playerMenu.hintsObject.SetActive(true);
+        hintsObject.SetActive(true);
     }
 
     public void HintsOff()
     {
         hints = false;
         playerMenu.HintsOff();
-        playerMenu.hintsObject.SetActive(false);
+        hintsObject.SetActive(false);
     }
 
     public void ExitGame()

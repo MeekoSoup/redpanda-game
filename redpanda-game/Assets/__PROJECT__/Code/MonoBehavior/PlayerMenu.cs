@@ -18,8 +18,6 @@ public class PlayerMenu : MonoBehaviour
     public GameObject mainMenuButton;
     public GameObject exitButton;
     [Space]
-    public GameObject hintsObject;
-    [Space]
     public TMP_Text hintsText;
     public TMP_Text soundText;
     public TMP_Text musicText;
