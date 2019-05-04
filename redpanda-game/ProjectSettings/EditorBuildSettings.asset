@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/__PROJECT__/Scenes/TestChamber01.unity
     guid: 3c719816dae054748b398e2f9176b2fd
   - enabled: 1
-    path: Assets/__PROJECT__/Scenes/Level01_Home.unity
+    path: Assets/__PROJECT__/Scenes/Level01.unity
     guid: c605983d3e6d1f941b9ea959c10cbfd9
   m_configObjects: {}
