@@ -15,8 +15,6 @@ public class Collectable : BaseBehavior
     public CollectableType collectableType = CollectableType.Coin;
     public Quality quality = Quality.Copper;
     [Space]
-    public int worth = 5;
-    [Space]
     public float seekDist = 5f;
     public float collectDist = 0.5f;
     public float speed = 1f;
@@ -57,8 +55,26 @@ public class Collectable : BaseBehavior
     public void Collect()
     {
         Instantiate(coinShatter, transform.position, transform.rotation);
-        GameManager.instance.score += worth;
+        GameManager.instance.score += GetWorth();
         //Destroy(gameObject);
         gameObject.SetActive(false);
+    }
+
+    public int GetWorth()
+    {
+        int worth = 0;
+        if (collectableType == CollectableType.Coin)
+        {
+            if (quality == Quality.Copper)
+                worth = COPPER_WORTH;
+            else if (quality == Quality.Silver)
+                worth = SILVER_WORTH;
+            else if (quality == Quality.Gold)
+                worth = GOLD_WORTH;
+        }
+        else
+            worth = REDPANDA_WORTH;
+
+        return worth;
     }
 }
