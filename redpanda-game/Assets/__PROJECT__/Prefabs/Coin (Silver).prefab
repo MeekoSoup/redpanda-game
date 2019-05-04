@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &265365899072235285
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 981289453684122433, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_Name
+      value: Coin (Silver)
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 981289453684122432, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539436428, guid: e744f672d50d0d542afd8cc2dd145eae, type: 3}
+      propertyPath: worth
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539436428, guid: e744f672d50d0d542afd8cc2dd145eae, type: 3}
+      propertyPath: coinShatter
+      value: 
+      objectReference: {fileID: 1354770194596284155, guid: f326730f6acb8f04cb77775e22e3648e,
+        type: 3}
+    - target: {fileID: 981289454324155773, guid: e744f672d50d0d542afd8cc2dd145eae,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 781e00aaecf373e4d9121e9147e5dfd0, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e744f672d50d0d542afd8cc2dd145eae, type: 3}
