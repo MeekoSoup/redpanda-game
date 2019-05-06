@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Chronos.Timeline))]
 public class Collectable : BaseBehavior
 {
     public enum CollectableType { Coin, RedPanda }
@@ -10,7 +11,7 @@ public class Collectable : BaseBehavior
     public const int COPPER_WORTH = 5,
                      SILVER_WORTH = 25,
                      GOLD_WORTH = 150,
-                     REDPANDA_WORTH = 1000;
+                     REDPANDA_WORTH = 200;
 
     public CollectableType collectableType = CollectableType.Coin;
     public Quality quality = Quality.Copper;
