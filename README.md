@@ -52,6 +52,7 @@ Resources (Added):
   - Chronos - https://assetstore.unity.com/packages/tools/particles-effects/chronos-31225
   - ProGrids (Package Manager Asset)
   - Mouse UI Icon - https://icons8.com/icon/521/computer-mouse-outline
+  - Camera UI Icon - https://icons8.com/icon/624/camera
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
