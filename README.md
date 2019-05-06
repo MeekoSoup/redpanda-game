@@ -51,6 +51,7 @@ Resources (Added):
   - RPG Character Mecanim Animation Pack FREE : https://assetstore.unity.com/packages/3d/animations/rpg-character-mecanim-animation-pack-free-65284
   - Chronos - https://assetstore.unity.com/packages/tools/particles-effects/chronos-31225
   - ProGrids (Package Manager Asset)
+  - Mouse UI Icon - https://icons8.com/icon/521/computer-mouse-outline
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
