@@ -54,6 +54,7 @@ Resources (Added):
   - Mouse UI Icon - https://icons8.com/icon/521/computer-mouse-outline
   - Camera UI Icon - https://icons8.com/icon/624/camera
   - Procedural Image - https://assetstore.unity.com/packages/tools/gui/procedural-ui-image-52200
+  - Polybrush (Beta) - https://assetstore.unity.com/packages/tools/modeling/polybrush-beta-111427
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
