@@ -55,6 +55,8 @@ Resources (Added):
   - Camera UI Icon - https://icons8.com/icon/624/camera
   - Procedural Image - https://assetstore.unity.com/packages/tools/gui/procedural-ui-image-52200
   - Polybrush (Beta) - https://assetstore.unity.com/packages/tools/modeling/polybrush-beta-111427
+  - Universal Sound FX - https://assetstore.unity.com/packages/audio/sound-fx/universal-sound-fx-17256
+  - Ultimate Game Music Collection - https://assetstore.unity.com/packages/audio/music/orchestral/ultimate-game-music-collection-37351
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
