@@ -57,6 +57,9 @@ Resources (Added):
   - Polybrush (Beta) - https://assetstore.unity.com/packages/tools/modeling/polybrush-beta-111427
   - Universal Sound FX - https://assetstore.unity.com/packages/audio/sound-fx/universal-sound-fx-17256
   - Ultimate Game Music Collection - https://assetstore.unity.com/packages/audio/music/orchestral/ultimate-game-music-collection-37351
+  - Definitive Stylized Water - https://assetstore.unity.com/packages/vfx/shaders/definitive-stylized-water-87062
+  - Fantasy Adventure Environment - https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-adventure-environment-70354
+  - Amplify Shader Editor - https://assetstore.unity.com/packages/tools/visual-scripting/amplify-shader-editor-68570
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
