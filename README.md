@@ -60,6 +60,7 @@ Resources (Added):
   - Definitive Stylized Water - https://assetstore.unity.com/packages/vfx/shaders/definitive-stylized-water-87062
   - Fantasy Adventure Environment - https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-adventure-environment-70354
   - Amplify Shader Editor - https://assetstore.unity.com/packages/tools/visual-scripting/amplify-shader-editor-68570
+  - Epic Toon FX - https://assetstore.unity.com/packages/vfx/particles/epic-toon-fx-57772
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
