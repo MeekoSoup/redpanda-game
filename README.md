@@ -61,6 +61,8 @@ Resources (Added):
   - Fantasy Adventure Environment - https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-adventure-environment-70354
   - Amplify Shader Editor - https://assetstore.unity.com/packages/tools/visual-scripting/amplify-shader-editor-68570
   - Epic Toon FX - https://assetstore.unity.com/packages/vfx/particles/epic-toon-fx-57772
+  - Cinema Director - Timeline & Cutscene Editor - https://assetstore.unity.com/packages/tools/visual-scripting/cinema-director-timeline-cutscene-editor-19779
+  - Volumetric Fog & Mist - https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/volumetric-fog-mist-49858
   
 Resources (Modified):
   - Third Person Controller - Basic Locomotion FREE : Changed character controller scripts to implement the following:
